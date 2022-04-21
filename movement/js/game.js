@@ -6,6 +6,7 @@ class Game {
     this.gameWidth = gameWidth;
     this.gameHeight = gameHeight;
     this.player = new Player(gameWidth, gameHeight);
+    this.input = new InputHandler(this.player, this);
   }
 
   update(deltaTime, timestamp) {

@@ -6,6 +6,13 @@ class Player {
     this.y = 0;
     this.size = 150;
 
+    this.vx = 0;
+    this.vy = 30;
+    this.vyAcc = 0;
+
+    this.maxVx = 30;
+    this.maxVy = -50;
+
     this.img = new Image();
     this.img.src = '../assets/Adventurer/adventurer-Sheet.png';
     this.imageFrame = 0;
@@ -26,6 +33,8 @@ class Player {
       }
       this.tick = 0;
     }
+
+    this.updatePosition();
   }
 
   draw(ctx) {
@@ -54,30 +63,39 @@ class Player {
 
     sprite.draw(this.imageFrame, this.x, this.y);
   }
-}
 
-function Sprite(img, width, height, positions, sizeW, sizeH) {
-  //https://davetayls.me/blog/2013/02/11/drawing-sprites-with-canvas
-  this.img = img;
-  this.width = width;
-  this.height = height;
-  this.positions = positions;
-  this.sizeW = sizeW;
-  this.sizeH = sizeH || sizeW;
+  updatePosition() {
+    this.vyAcc += 0.5;
+
+    this.x += this.vx;
+    this.y += this.vy * this.vyAcc;
+
+    if (this.x < 0) {
+      this.x = 0;
+    }
+
+    if (this.x + this.size > this.gameWidth) {
+      this.x = this.gameWidth - this.size;
+    }
+
+    if (this.y > this.gameHeight - this.size) {
+      this.y = this.gameHeight - this.size;
+    }
+  }
+
+  moveLeft() {
+    this.vx = -this.maxVx;
+  }
+
+  moveRight() {
+    this.vx = this.maxVx;
+  }
+
+  stop() {
+    this.vx = 0;
+  }
+
+  jump() {
+    this.vyAcc = -3;
+  }
 }
-Sprite.prototype = {
-  draw: function (position, x, y) {
-    var pos = this.positions[position];
-    ctx.drawImage(
-      this.img,
-      pos[0],
-      pos[1],
-      this.width,
-      this.height,
-      x,
-      y,
-      this.sizeW,
-      this.sizeH
-    );
-  },
-};
