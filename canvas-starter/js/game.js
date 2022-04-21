@@ -1,5 +1,5 @@
 const img = new Image();
-img.src = 'adventurer-Sheet.png';
+img.src = './assets/adventurer-Sheet.png';
 
 class Game {
     constructor(gameWidth, gameHeight) {
