@@ -49,14 +49,14 @@ class Game {
       37,
       [
         // specify a few sprite locations
-        [0, 0], // green
+        [0, 0], // idel
         [50, 0], // green
         [50, 37], // green
       ],
-      500
+      150
     );
 
-    sprite.draw(this.imageFrame, 0, 0);
+    sprite.draw(this.imageFrame, 0, this.gameHeight  - 150);
     // sprite.draw(1, 0, 60);
     // sprite.draw(2, 0, 120);
   }
