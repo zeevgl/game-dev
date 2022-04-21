@@ -1,5 +1,5 @@
 const img = new Image();
-img.src = "./assets/adventurer-Sheet.png";
+img.src = './assets/adventurer-Sheet.png';
 
 class Game {
   constructor(gameWidth, gameHeight) {
@@ -27,7 +27,7 @@ class Game {
   }
 
   drawRect() {
-    ctx.fillStyle = "#ff0000";
+    ctx.fillStyle = '#ff0000';
     ctx.fillRect(10, 20, 50, 150);
   }
 
