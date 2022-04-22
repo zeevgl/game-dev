@@ -5,6 +5,7 @@ ctx.imageSmoothingEnabled = false;
 const GAME_WIDTH = 800;
 const GAME_HEIGHT = 600;
 const GRAVITY = 1.5;
+const DEBUG_MODE = true;
 
 const game = new Game(GAME_WIDTH, GAME_HEIGHT);
 

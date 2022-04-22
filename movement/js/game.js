@@ -2,7 +2,7 @@ class Game {
   constructor(gameWidth, gameHeight) {
     this.gameWidth = gameWidth;
     this.gameHeight = gameHeight;
-    this.player = new Player(gameWidth, gameHeight);
+    this.player = new Player('hero', gameWidth, gameHeight);
     this.input = new InputHandler(this.player, this);
   }
 
@@ -13,7 +13,7 @@ class Game {
   draw(ctx) {
     this.drawRect();
     ctx.save();
-    
+
     // ctx.translate(
     //   this.player.x - this.gameWidth / 2,
     //   0
@@ -21,7 +21,6 @@ class Game {
 
     // ...your drawing code...
 
-    
     this.player.draw(ctx);
 
     ctx.restore();

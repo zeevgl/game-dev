@@ -1,17 +1,17 @@
-class Player {
-  constructor(gameWidth, gameHeight) {
+class Player extends Actor {
+  constructor(name, gameWidth, gameHeight) {
+    const size = 150;
+
+    super(name, 0, 0, size, size, gameWidth, gameHeight);
     this.gameWidth = gameWidth;
     this.gameHeight = gameHeight;
-    this.x = 0;
-    this.y = 0;
-    this.size = 150;
 
-    this.vx = 0;
-    this.vy = 30;
-    this.vyAcc = 0;
+    this.speedV = new Vector([10, 30]);
+    this.accV = new Vector([0, 0]);
 
-    this.maxVx = 30;
-    this.maxVy = -50;
+    this.size = size;
+    this.imgWidth = 50;
+    this.imgHeight = 37;
 
     this.img = new Image();
     this.img.src = '../assets/Adventurer/adventurer-Sheet.png';
@@ -34,7 +34,7 @@ class Player {
       this.tick = 0;
     }
 
-    this.updatePosition(deltaTime);
+    this.calcPosition();
   }
 
   draw(ctx) {
@@ -50,8 +50,8 @@ class Player {
   drawSprite() {
     const sprite = new Sprite(
       this.img,
-      50,
-      37,
+      this.imgWidth,
+      this.imgHeight,
       [
         // specify a few sprite locations
         [0, 0], // idel
@@ -64,43 +64,21 @@ class Player {
     sprite.draw(this.imageFrame, this.x, this.y);
   }
 
-  updatePosition(deltaTime) {
-    this.vyAcc += GRAVITY;
-
-    this.x += this.vx;
-    //this.y += this.vy * this.vyAcc;
-    // const newSpeed = deltaTime * this.vyAcc;
-    // this.y += deltaTime * this.vyAcc;
-    // console.log(this.y, newSpeed, this.vyAcc);
-
-    this.y += this.vyAcc;
-
-    if (this.x < 0) {
-      this.x = 0;
-    }
-
-    if (this.x + this.size > this.gameWidth) {
-      this.x = this.gameWidth - this.size;
-    }
-
-    if (this.y > this.gameHeight - this.size) {
-      this.y = this.gameHeight - this.size;
-    }
-  }
-
   moveLeft() {
-    this.vx = -this.maxVx;
+    this.accV.vx = -3;
   }
 
   moveRight() {
-    this.vx = this.maxVx;
+    this.accV.vx = 3;
   }
 
   stop() {
-    this.vx = 0;
+    this.accV.vx = 0;
   }
 
   jump() {
-    this.vyAcc = - this.size / 8;
+    if (this.accV.vy === 0) {
+      this.accV.vy = -6;
+    }
   }
 }
