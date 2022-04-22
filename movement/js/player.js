@@ -22,29 +22,27 @@ class Player extends Actor {
   initSprite(size) {
     this.imageFrame = 0;
     this.tick = 0;
-    
+
     const img = new Image();
     img.src = '../assets/Adventurer/adventurer-Sheet.png';
 
-    this.sprite = new Sprite(
-      img,
-      50,
-      37,
-      [
-        // specify a few sprite locations
-        [0, 0], // idel
-        [50, 0], // pos1
-        [50, 37], // pos2
-      ],
-      size
-    );
+    const positions = [];
+    const imgWidth = 50;
+    const imgHeight = 37;
+    for (let j = 0; j < 11; j++) {
+      for (let i = 0; i < 7; i++) {
+        positions.push([i * imgWidth, j * imgHeight]);
+      }
+    }
+
+    this.sprite = new Sprite(img, imgWidth, imgHeight, positions, size);
   }
 
   update(deltaTime, timestamp) {
     this.tick++;
     if (this.tick % 10 == 0) {
       this.imageFrame++;
-      if (this.imageFrame >= 3) {
+      if (this.imageFrame >= 77) {
         this.imageFrame = 0;
       }
       this.tick = 0;
