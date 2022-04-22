@@ -10,18 +10,34 @@ class Player extends Actor {
     this.accV = new Vector([0, 0]);
 
     this.size = size;
-    this.imgWidth = 50;
-    this.imgHeight = 37;
 
-    this.img = new Image();
-    this.img.src = '../assets/Adventurer/adventurer-Sheet.png';
-    this.imageFrame = 0;
-    this.tick = 0;
     this.initPlayer();
+    this.initSprite(size);
   }
 
   initPlayer() {
     this.y = this.gameHeight - this.size;
+  }
+
+  initSprite(size) {
+    this.imageFrame = 0;
+    this.tick = 0;
+    
+    const img = new Image();
+    img.src = '../assets/Adventurer/adventurer-Sheet.png';
+
+    this.sprite = new Sprite(
+      img,
+      50,
+      37,
+      [
+        // specify a few sprite locations
+        [0, 0], // idel
+        [50, 0], // pos1
+        [50, 37], // pos2
+      ],
+      size
+    );
   }
 
   update(deltaTime, timestamp) {
@@ -48,20 +64,7 @@ class Player extends Actor {
   }
 
   drawSprite() {
-    const sprite = new Sprite(
-      this.img,
-      this.imgWidth,
-      this.imgHeight,
-      [
-        // specify a few sprite locations
-        [0, 0], // idel
-        [50, 0], // green
-        [50, 37], // green
-      ],
-      this.size
-    );
-
-    sprite.draw(this.imageFrame, this.x, this.y);
+    this.sprite.draw(this.imageFrame, this.x, this.y);
   }
 
   moveLeft() {
