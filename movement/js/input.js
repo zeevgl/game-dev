@@ -24,7 +24,7 @@ class InputHandler {
         //   game.start();
         //   break;
       }
-    });
+    }, false);
 
     document.addEventListener('keyup', (event) => {
       switch (event.code) {
@@ -33,6 +33,6 @@ class InputHandler {
           player.stop();
           break;
       }
-    });
+    }, false);
   }
 }

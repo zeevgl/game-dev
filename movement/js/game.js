@@ -12,7 +12,7 @@ class Game {
 
   draw(ctx) {
     this.drawRect();
-    ctx.save();
+    //ctx.save();
 
     // ctx.translate(
     //   this.player.x - this.gameWidth / 2,
@@ -23,7 +23,7 @@ class Game {
 
     this.player.draw(ctx);
 
-    ctx.restore();
+    //ctx.restore();
   }
 
   drawRect() {

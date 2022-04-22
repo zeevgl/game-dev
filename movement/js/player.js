@@ -58,10 +58,12 @@ class Player extends Actor {
     this.setState(this.playerStates.IDLE);
   }
 
-  setState(sate) {
-    this.state = sate;
-    this.imageFrame = this.spriteStates[this.state].start;
-    this.tick = 0;
+  setState(state) {
+    if (this.state !== state) {
+      this.state = state;
+      this.imageFrame = this.spriteStates[this.state].start;
+      this.tick = 0;
+    }
   }
 
   update(deltaTime, timestamp) {
