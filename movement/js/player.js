@@ -6,13 +6,14 @@ class Player extends Actor {
     this.gameWidth = gameWidth;
     this.gameHeight = gameHeight;
 
-    this.speedV = new Vector([10, 30]);
+    this.speedV = new Vector([2, 30]);
     this.accV = new Vector([0, 0]);
 
     this.size = size;
 
     this.initPlayer();
     this.initSprite(size);
+    this.initPlayerStates();
   }
 
   initPlayer() {
@@ -20,9 +21,6 @@ class Player extends Actor {
   }
 
   initSprite(size) {
-    this.imageFrame = 0;
-    this.tick = 0;
-
     const img = new Image();
     img.src = '../assets/Adventurer/adventurer-Sheet.png';
 
@@ -38,12 +36,40 @@ class Player extends Actor {
     this.sprite = new Sprite(img, imgWidth, imgHeight, positions, size);
   }
 
+  initPlayerStates() {
+    this.playerStates = {
+      IDLE: 'IDLE',
+      RUN: 'RUN',
+      JUMP: 'JUMP',
+      CROUCH: 'CROUCH',
+    };
+
+    this.spriteStates = {
+      [this.playerStates.IDLE]: {
+        start: 0,
+        end: 4,
+      },
+      [this.playerStates.RUN]: {
+        start: 8,
+        end: 14,
+      },
+    };
+
+    this.setState(this.playerStates.IDLE);
+  }
+
+  setState(sate) {
+    this.state = sate;
+    this.imageFrame = this.spriteStates[this.state].start;
+    this.tick = 0;
+  }
+
   update(deltaTime, timestamp) {
     this.tick++;
     if (this.tick % 10 == 0) {
       this.imageFrame++;
-      if (this.imageFrame >= 77) {
-        this.imageFrame = 0;
+      if (this.imageFrame >= this.spriteStates[this.state].end) {
+        this.imageFrame = this.spriteStates[this.state].start;
       }
       this.tick = 0;
     }
@@ -66,14 +92,17 @@ class Player extends Actor {
   }
 
   moveLeft() {
+    this.setState(this.playerStates.RUN);
     this.accV.vx = -3;
   }
 
   moveRight() {
+    this.setState(this.playerStates.RUN);
     this.accV.vx = 3;
   }
 
   stop() {
+    this.setState(this.playerStates.IDLE);
     this.accV.vx = 0;
   }
 
