@@ -34,7 +34,7 @@ class Player {
       this.tick = 0;
     }
 
-    this.updatePosition();
+    this.updatePosition(deltaTime);
   }
 
   draw(ctx) {
@@ -64,11 +64,16 @@ class Player {
     sprite.draw(this.imageFrame, this.x, this.y);
   }
 
-  updatePosition() {
-    this.vyAcc += 0.5;
+  updatePosition(deltaTime) {
+    this.vyAcc += GRAVITY;
 
     this.x += this.vx;
-    this.y += this.vy * this.vyAcc;
+    //this.y += this.vy * this.vyAcc;
+    // const newSpeed = deltaTime * this.vyAcc;
+    // this.y += deltaTime * this.vyAcc;
+    // console.log(this.y, newSpeed, this.vyAcc);
+
+    this.y += this.vyAcc;
 
     if (this.x < 0) {
       this.x = 0;
@@ -96,6 +101,6 @@ class Player {
   }
 
   jump() {
-    this.vyAcc = -3;
+    this.vyAcc = - this.size / 8;
   }
 }

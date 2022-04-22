@@ -1,6 +1,3 @@
-const img = new Image();
-img.src = '../assets/Adventurer/adventurer-Sheet.png';
-
 class Game {
   constructor(gameWidth, gameHeight) {
     this.gameWidth = gameWidth;
@@ -15,7 +12,19 @@ class Game {
 
   draw(ctx) {
     this.drawRect();
-    this.player.draw();
+    ctx.save();
+    
+    // ctx.translate(
+    //   this.player.x - this.gameWidth / 2,
+    //   0
+    // );
+
+    // ...your drawing code...
+
+    
+    this.player.draw(ctx);
+
+    ctx.restore();
   }
 
   drawRect() {
