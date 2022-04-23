@@ -1,6 +1,6 @@
 class Player extends Actor {
   constructor(name, gameWidth, gameHeight) {
-    const size = 150;
+    const size = PLAYER_SIZE;
 
     super(name, 0, 0, size, size, gameWidth, gameHeight);
     this.gameWidth = gameWidth;
@@ -79,7 +79,7 @@ class Player extends Actor {
     this.calcPosition();
   }
 
-  draw(ctx) {
+  draw(canvas) {
     this.drawRect();
     this.drawSprite();
   }
@@ -110,7 +110,7 @@ class Player extends Actor {
 
   jump() {
     if (this.accV.vy === 0) {
-      this.accV.vy = -6;
+      this.accV.vy = -this.size * 0.013; //-1.5;
     }
   }
 }
