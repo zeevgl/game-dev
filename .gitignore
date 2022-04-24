@@ -4,3 +4,4 @@ target
 maven
 .idea
 .vscode
+.DS_Store
