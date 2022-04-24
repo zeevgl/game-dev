@@ -31,9 +31,12 @@ class Actor extends Shape {
       this.accV.vx = 0;
     }
 
-    if (this.x + this.size > this.gameWidth) {
-      this.x = this.gameWidth - this.size;
-    }
+    //TODO:change to world boundary 
+
+    // if (this.x + this.size > this.gameWidth) {
+    //   debugger
+    //   this.x = this.gameWidth - this.size;
+    // }
 
     if (this.y > this.gameHeight - this.size) {
       this.y = this.gameHeight - this.size;

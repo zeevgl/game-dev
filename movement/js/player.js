@@ -2,6 +2,7 @@ class Player extends Actor {
   constructor(name, gameWidth, gameHeight) {
     const size = PLAYER_SIZE;
 
+    //super(name, gameWidth/2 - size, 0, size, size, gameWidth, gameHeight);
     super(name, 0, 0, size, size, gameWidth, gameHeight);
     this.gameWidth = gameWidth;
     this.gameHeight = gameHeight;

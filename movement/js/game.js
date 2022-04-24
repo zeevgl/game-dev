@@ -10,24 +10,32 @@ class Game {
     this.player.update(deltaTime, timestamp);
   }
 
-  draw(ctx) {
-    this.drawRect();
-    //ctx.save();
+  draw(context) {
+    console.log('this.player.x=', this.player.x + PLAYER_SIZE);
+    ctx.save();
+    if (
+      this.player.x + PLAYER_SIZE > this.gameWidth / 2 &&
+      this.player.x + PLAYER_SIZE < 900
+    ) {
+      //follow
+      context.translate(-this.player.x - PLAYER_SIZE + canvas.width / 2, 0);
+    } else if ( this.player.x + PLAYER_SIZE >= 900) {
+      //getting to right eadge. WIP
+      context.translate(-this.player.x - PLAYER_SIZE + this.player.x * 0.1 + canvas.width / 2, 0);
+    }
 
-    // ctx.translate(
-    //   this.player.x - this.gameWidth / 2,
-    //   0
-    // );
-
-    // ...your drawing code...
-
-    this.player.draw(ctx);
-
-    //ctx.restore();
+    //  else {
+    //   //dont follow
+    // }
+    this.drawRect(context);
+    this.player.draw(context);
+    ctx.restore();
   }
 
-  drawRect() {
-    ctx.fillStyle = '#ff0000';
-    ctx.fillRect(10, 20, 50, 150);
+  drawRect(context) {
+    for (let i = 0; i < 30; i++) {
+      context.fillStyle = i % 2 === 0 ? '#ff0000' : '#00ff00';
+      context.fillRect(50 * i + i * 50, 20, 10, 800);
+    }
   }
 }
