@@ -1,0 +1,63 @@
+{
+    "Map/SizeTest": {
+        "height": 4300,
+        "width": 2
+    },
+    "activeFile": "D:/projects/game-dev/assets/maps/map2.tmx",
+    "expandedProjectPaths": [
+    ],
+    "fileStates": {
+        "": {
+            "scaleInDock": 3
+        },
+        "#Tileset": {
+            "scaleInDock": 4
+        },
+        "D:/projects/game-dev/assets/maps/map1.tmx": {
+            "scale": 0.33,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 639.3939393939394,
+                "y": 687.8787878787879
+            }
+        },
+        "D:/projects/game-dev/assets/maps/map1.tmx#forest": {
+            "scaleInDock": 3,
+            "scaleInEditor": 1
+        },
+        "D:/projects/game-dev/assets/maps/map2.tmx": {
+            "scale": 1.5,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 98.66666666666666,
+                "y": 190
+            }
+        },
+        "D:/projects/game-dev/assets/maps/map2.tmx#Tileset": {
+            "scaleInDock": 4
+        }
+    },
+    "last.exportedFilePath": "D:/projects/game-dev/assets/maps",
+    "last.imagePath": "D:/projects/game-dev/assets/maps/FreeCuteTileset",
+    "map.fixedSize": true,
+    "map.height": 16,
+    "map.lastUsedExportFilter": "JavaScript map files (*.js)",
+    "map.lastUsedFormat": "tmx",
+    "map.tileHeight": 16,
+    "map.tileWidth": 16,
+    "map.width": 16,
+    "openFiles": [
+        "D:/projects/game-dev/assets/maps/map1.tmx",
+        "D:/projects/game-dev/assets/maps/map2.tmx"
+    ],
+    "project": "test.tiled-project",
+    "recentFiles": [
+        "D:/projects/game-dev/assets/maps/map1.tmx",
+        "D:/projects/game-dev/assets/maps/map2.tmx"
+    ],
+    "tileset.embedInMap": true,
+    "tileset.tileSize": {
+        "height": 16,
+        "width": 16
+    }
+}
