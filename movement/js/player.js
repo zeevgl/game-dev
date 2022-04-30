@@ -11,13 +11,13 @@ class Player extends Actor {
 
     this.size = size;
 
-    this.initPlayer();
     this.initSprite(size);
-    this.initPlayerStates();
+    this.initPlayer();
   }
 
   initPlayer() {
     this.y = this.gameHeight - this.size;
+    this.setState(PlayerStates.IDLE);
   }
 
   initSprite(size) {
@@ -33,32 +33,10 @@ class Player extends Actor {
     this.positions = positions;
   }
 
-  initPlayerStates() {
-    this.playerStates = {
-      IDLE: 'IDLE',
-      RUN: 'RUN',
-      JUMP: 'JUMP',
-      CROUCH: 'CROUCH',
-    };
-
-    this.spriteStates = {
-      [this.playerStates.IDLE]: {
-        start: 0,
-        end: 4,
-      },
-      [this.playerStates.RUN]: {
-        start: 8,
-        end: 14,
-      },
-    };
-
-    this.setState(this.playerStates.IDLE);
-  }
-
   setState(state) {
     if (this.state !== state) {
       this.state = state;
-      this.imageFrame = this.spriteStates[this.state].start;
+      this.imageFrame = SpriteStates[this.state].start;
       this.tick = 0;
     }
   }
@@ -67,8 +45,8 @@ class Player extends Actor {
     this.tick++;
     if (this.tick % 10 == 0) {
       this.imageFrame++;
-      if (this.imageFrame >= this.spriteStates[this.state].end) {
-        this.imageFrame = this.spriteStates[this.state].start;
+      if (this.imageFrame >= SpriteStates[this.state].end) {
+        this.imageFrame = SpriteStates[this.state].start;
       }
       this.tick = 0;
     }
@@ -91,17 +69,17 @@ class Player extends Actor {
   }
 
   moveLeft() {
-    this.setState(this.playerStates.RUN);
+    this.setState(PlayerStates.RUN);
     this.accV.vx = -3;
   }
 
   moveRight() {
-    this.setState(this.playerStates.RUN);
+    this.setState(PlayerStates.RUN);
     this.accV.vx = 3;
   }
 
   stop() {
-    this.setState(this.playerStates.IDLE);
+    this.setState(PlayerStates.IDLE);
     this.accV.vx = 0;
   }
 
