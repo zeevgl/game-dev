@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.4" orientation="orthogonal" renderorder="right-down" width="20" height="9" tilewidth="70" tileheight="70" infinite="0" nextlayerid="2" nextobjectid="1">
+<map version="1.8" tiledversion="1.8.4" orientation="orthogonal" renderorder="right-down" width="20" height="9" tilewidth="70" tileheight="70" infinite="0" nextlayerid="3" nextobjectid="9">
+ <editorsettings>
+  <export target="map4.js" format="js"/>
+ </editorsettings>
  <tileset firstgid="1" name="test1" tilewidth="70" tileheight="70" tilecount="144" columns="12">
   <image source="tiles_spritesheet.png" width="852" height="856"/>
  </tileset>
@@ -13,7 +16,13 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,9,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,9,0,0,0,0,
 0,0,0,4,0,0,0,0,0,0,0,0,4,0,0,9,0,0,0,0,
-9,9,9,9,9,9,0,0,0,9,9,9,9,9,9,9,0,0,0,28
+9,9,9,9,9,9,0,0,9,9,9,9,9,9,9,9,0,0,0,28
 </data>
  </layer>
+ <objectgroup id="2" name="platform">
+  <object id="3" name="first" x="0" y="560" width="420" height="70"/>
+  <object id="4" name="second" x="560" y="560" width="560" height="70"/>
+  <object id="5" name="wall" x="1050" y="280" width="70" height="280"/>
+  <object id="6" name="third" x="1120" y="280" width="280" height="70"/>
+ </objectgroup>
 </map>

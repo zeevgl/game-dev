@@ -16,7 +16,7 @@ class Player extends Actor {
   }
 
   initPlayer() {
-    this.y = this.gameHeight - this.size;
+    //this.y = this.gameHeight - this.size;
     this.setState(PlayerStates.IDLE);
   }
 

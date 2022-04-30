@@ -38,10 +38,10 @@ class Actor extends Shape {
     //   this.x = this.gameWidth - this.size;
     // }
 
-    if (this.y > this.gameHeight - this.size) {
-      this.y = this.gameHeight - this.size;
-      this.accV.vy = 0;
-    }
+    // if (this.y > this.gameHeight - this.size) {
+    //   this.y = this.gameHeight - this.size;
+    //   this.accV.vy = 0;
+    // }
   }
 
   get boxX() {
@@ -49,7 +49,7 @@ class Actor extends Shape {
   }
 
   get boxY() {
-    return this.y + this.width;
+    return this.y + this.height;
   }
 
   update(deltaTime, timestamp) {

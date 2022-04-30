@@ -5,10 +5,12 @@ class Game {
     this.level4 = new Level(TileMaps.map4, '../assets/maps');
     this.player = new Player('hero', gameWidth, gameHeight);
     this.input = new InputHandler(this.player, this);
+    this.currentLevel = this.level4;
   }
 
   update(deltaTime, timestamp) {
     this.player.update(deltaTime, timestamp);
+    this.calcColision();
   }
 
   draw(context) {
@@ -28,7 +30,7 @@ class Game {
       );
     }
 
-    this.level4.draw(context);
+    this.currentLevel.draw(context);
     this.player.draw(context);
     ctx.restore();
   }
@@ -37,6 +39,42 @@ class Game {
     for (let i = 0; i < 300; i++) {
       context.fillStyle = i % 2 === 0 ? '#ff0000' : '#00ff00';
       context.fillRect(50 * i + i * 50, 20, 10, 800);
+    }
+  }
+
+  calcColision() {
+    //this.player.y = 350;
+    // this.player.accV.vy = 0;
+
+    // console.log(
+    //   'this.player=',
+    //   this.player.x,
+    //   this.player.y + this.player.size
+    // );
+
+    const playerX = this.player.x + this.player.size / 2;
+    const playerYBottom = this.player.y + this.player.size;
+
+    console.log('playerYBottom=', playerYBottom);
+
+    const res = this.currentLevel.platfroms.objects.find((p, i) => {
+      if (
+        playerYBottom > p.y &&
+        playerYBottom <= p.y + p.height &&
+        playerX > p.x - this.player.size * 0.3 &&
+        playerX < p.x + p.width + this.player.size * 0.05
+      ) {
+        return true;
+      }
+
+      return false;
+    });
+
+    // console.log('res=', res);
+
+    if (res) {
+      this.player.y = res.y - this.player.size;
+      this.player.accV.vy = 0;
     }
   }
 }

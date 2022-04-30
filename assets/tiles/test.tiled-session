@@ -20,8 +20,8 @@
             "scale": 1,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 640,
-                "y": 639.5
+                "x": 331,
+                "y": 481.5
             }
         },
         "D:/projects/game-dev/assets/maps/map1.tmx#forest": {
@@ -54,12 +54,12 @@
             "scale": 0.5,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 578,
-                "y": 146
+                "x": 525,
+                "y": 144
             }
         },
         "D:/projects/game-dev/assets/maps/map4.tmx#test1": {
-            "scaleInDock": 0.75
+            "scaleInDock": 1
         }
     },
     "last.exportedFilePath": "D:/projects/game-dev/assets/maps",
