@@ -2,7 +2,6 @@ class Player extends Actor {
   constructor(name, gameWidth, gameHeight) {
     const size = PLAYER_SIZE;
 
-    //super(name, gameWidth/2 - size, 0, size, size, gameWidth, gameHeight);
     super(name, 0, 0, size, size, gameWidth, gameHeight);
     this.gameWidth = gameWidth;
     this.gameHeight = gameHeight;
@@ -22,19 +21,16 @@ class Player extends Actor {
   }
 
   initSprite(size) {
-    const img = new Image();
-    img.src = '../assets/Adventurer/adventurer-Sheet.png';
-
-    const positions = [];
-    const imgWidth = 50;
-    const imgHeight = 37;
-    for (let j = 0; j < 11; j++) {
-      for (let i = 0; i < 7; i++) {
-        positions.push([i * imgWidth, j * imgHeight]);
-      }
-    }
-
-    this.sprite = new Sprite(img, imgWidth, imgHeight, positions, size);
+    const { positions, sprite } = getSpritePositions(
+      50,
+      37,
+      this.size,
+      7,
+      11,
+      '../assets/Adventurer/adventurer-Sheet.png'
+    );
+    this.sprite = sprite;
+    this.positions = positions;
   }
 
   initPlayerStates() {

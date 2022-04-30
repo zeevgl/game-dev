@@ -33,3 +33,44 @@ function drawAllSpritePositions(sprite, itemSize, cols, rows) {
     }
   }
 }
+
+/*
+used for evn spread sprites
+return {
+  positions: [[],[]],
+  sprite: Sprite
+
+}
+*/
+function getSpritePositions(
+  singelItemWidth,
+  singelItemHeight,
+  singleItemSize,
+  cols,
+  rows,
+  filePath
+) {
+  const positions = [];
+
+  for (let j = 0; j < rows; j++) {
+    for (let i = 0; i < cols; i++) {
+      positions.push([i * singelItemWidth, j * singelItemHeight]);
+    }
+  }
+
+  const img = new Image();
+  img.src = filePath;
+
+  const sprite = new Sprite(
+    img,
+    singelItemWidth,
+    singelItemHeight,
+    positions,
+    singleItemSize
+  );
+
+  return {
+    positions,
+    sprite,
+  };
+}

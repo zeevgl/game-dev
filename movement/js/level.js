@@ -31,25 +31,15 @@ class Level {
 
   initSprite() {
     const tileset = this.map.tilesets[0];
-
-    const imgWidth = tileset.tilewidth;
-    const imgHeight = tileset.tileheight;
-
-    for (let j = 0; j < tileset.columns; j++) {
-      for (let i = 0; i < tileset.columns; i++) {
-        this.positions.push([i * imgWidth, j * imgHeight]);
-      }
-    }
-
-    const img = new Image();
-    img.src = `${this.assetsFolder}/${tileset.image}`;
-
-    this.sprite = new Sprite(
-      img,
-      imgWidth,
-      imgHeight,
-      this.positions,
-      this.tileSize
+    const { positions, sprite } = getSpritePositions(
+      tileset.tilewidth,
+      tileset.tileheight,
+      this.tileSize,
+      tileset.columns,
+      tileset.columns,
+      `${this.assetsFolder}/${tileset.image}`
     );
+    this.sprite = sprite;
+    this.positions = positions;
   }
 }
