@@ -1,8 +1,9 @@
 class Level {
-  constructor() {
+  constructor(map) {
+    this.map = map;
     this.sprite = null;
-    this.tileSize = PLAYER_SIZE * 0.2;
-    this.initSprite();
+    this.tileSize = 70;
+    this.initSprite_70();
     this.counter = 0;
   }
 
@@ -14,8 +15,8 @@ class Level {
     // }
 
     //this.counter++;
-    // this.sprite.draw(26, 380, 300);
-    const ground = TileMaps.map2.layers[0];
+    this.sprite.draw(2, 380, 300);
+    const ground = this.map.layers[0];
     //console.log('ground=', ground);
     //debugger;
     //console.log('ground.data.lenght=', ground.data.length);
@@ -62,10 +63,10 @@ class Level {
     //   }
     // }
 
-    for (let y = 0; y < 16; y++) {
-      for (let x = 0; x < 16; x++) {
+    for (let y = 0; y < this.map.height; y++) {
+      for (let x = 0; x < this.map.width; x++) {
         // console.log('x,y=', x, y);
-        const index = y * 16 + x;
+        const index = y * this.map.width + x;
         if (ground.data[index] !== 0) {
           this.sprite.draw(
             ground.data[index],
@@ -103,7 +104,7 @@ class Level {
   // sprite.draw(0, 100, 100);
   // for (let i = 0; i < ground.data.length; i++) {}
 
-  initSprite() {
+  initSprite_16() {
     const img = new Image();
     img.src = '../assets/maps/FreeCuteTileset/Tileset.png';
 
@@ -112,6 +113,29 @@ class Level {
     const imgHeight = 16;
     for (let j = 0; j < 6; j++) {
       for (let i = 0; i < 8; i++) {
+        positions.push([i * imgWidth, j * imgHeight]);
+      }
+    }
+    console.log('positions=', positions);
+
+    this.sprite = new Sprite(
+      img,
+      imgWidth,
+      imgHeight,
+      positions,
+      this.tileSize
+    );
+  }
+
+  initSprite_70() {
+    const img = new Image();
+    img.src = '../assets/maps/tiles_spritesheet.png';
+
+    const positions = [];
+    const imgWidth = 70;
+    const imgHeight = 70;
+    for (let j = 0; j < 12; j++) {
+      for (let i = 0; i < 12; i++) {
         positions.push([i * imgWidth, j * imgHeight]);
       }
     }

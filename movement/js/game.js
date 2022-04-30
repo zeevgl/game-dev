@@ -2,7 +2,10 @@ class Game {
   constructor(gameWidth, gameHeight) {
     this.gameWidth = gameWidth;
     this.gameHeight = gameHeight;
-    this.level = new Level();
+    this.level1 = new Level(TileMaps.map1);
+    this.level2 = new Level(TileMaps.map2);
+    this.level3 = new Level(TileMaps.map3);
+    this.level4 = new Level(TileMaps.map4);
     this.player = new Player('hero', gameWidth, gameHeight);
     this.input = new InputHandler(this.player, this);
   }
@@ -33,7 +36,7 @@ class Game {
     // }
     //this.drawRect(context);
     //this.level.draw1(context);
-    this.level.draw(context);
+    this.level4.draw(context);
     this.player.draw(context);
     ctx.restore();
   }
