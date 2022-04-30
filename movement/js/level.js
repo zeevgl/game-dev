@@ -1,16 +1,16 @@
 class Level {
-  constructor(map) {
+  constructor(map, assetsFolder) {
+    this.assetsFolder = assetsFolder;
+    this.positions = [];
     this.map = map;
     this.sprite = null;
     this.tileSize = 67;
-    this.initSprite_70();
-    ////int oneDindex = (row * length_of_row) + column; // Indexes
+    this.initSprite();
   }
 
   update(deltaTime, timestamp) {}
 
-  draw(canvas) {
-    //this.sprite.draw(8, 0, 0);
+  draw(context) {
     const ground = this.map.layers[0];
 
     for (let y = 0; y < this.map.height; y++) {
@@ -21,62 +21,34 @@ class Level {
         }
       }
     }
-
-    // for (let y = 0; y < 12; y++) {
-    //   for (let x = 0; x < 12; x++) {
-    //     //const tile = this.getTile(ground.data, x, y);
-    //     this.sprite.draw(y * 12 + x, x * this.tileSize, y * this.tileSize);
-    //   }
-    // }
   }
 
   getTile(tiles, col, row) {
+    //int oneDindex = (row * length_of_row) + column; // Indexes
     const index = row * this.map.width + col;
     return tiles[index];
   }
 
-  initSprite_16() {
-    const img = new Image();
-    img.src = '../assets/maps/FreeCuteTileset/Tileset.png';
+  initSprite() {
+    const tileset = this.map.tilesets[0];
 
-    const positions = [];
-    const imgWidth = 16;
-    const imgHeight = 16;
-    for (let j = 0; j < 6; j++) {
-      for (let i = 0; i < 8; i++) {
-        positions.push([i * imgWidth, j * imgHeight]);
+    const imgWidth = tileset.tilewidth;
+    const imgHeight = tileset.tileheight;
+
+    for (let j = 0; j < tileset.columns; j++) {
+      for (let i = 0; i < tileset.columns; i++) {
+        this.positions.push([i * imgWidth, j * imgHeight]);
       }
     }
-    console.log('positions=', positions);
+
+    const img = new Image();
+    img.src = `${this.assetsFolder}/${tileset.image}`;
 
     this.sprite = new Sprite(
       img,
       imgWidth,
       imgHeight,
-      positions,
-      this.tileSize
-    );
-  }
-
-  initSprite_70() {
-    const img = new Image();
-    img.src = '../assets/maps/tiles_spritesheet.png';
-
-    const positions = [];
-    const imgWidth = 70;
-    const imgHeight = 70;
-    for (let j = 0; j < 12; j++) {
-      for (let i = 0; i < 12; i++) {
-        positions.push([i * imgWidth, j * imgHeight]);
-      }
-    }
-    console.log('positions=', positions);
-
-    this.sprite = new Sprite(
-      img,
-      imgWidth,
-      imgHeight,
-      positions,
+      this.positions,
       this.tileSize
     );
   }

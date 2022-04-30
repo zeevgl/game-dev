@@ -2,10 +2,7 @@ class Game {
   constructor(gameWidth, gameHeight) {
     this.gameWidth = gameWidth;
     this.gameHeight = gameHeight;
-    this.level1 = new Level(TileMaps.map1);
-    this.level2 = new Level(TileMaps.map2);
-    this.level3 = new Level(TileMaps.map3);
-    this.level4 = new Level(TileMaps.map4);
+    this.level4 = new Level(TileMaps.map4, '../assets/maps');
     this.player = new Player('hero', gameWidth, gameHeight);
     this.input = new InputHandler(this.player, this);
   }
@@ -31,24 +28,9 @@ class Game {
       );
     }
 
-    //  else {
-    //   //dont follow
-    // }
-    //this.drawRect(context);
-    //this.level.draw1(context);
     this.level4.draw(context);
     this.player.draw(context);
     ctx.restore();
-  }
-
-  drawMap(context) {
-    // const ground = TileMaps.map1.layers[0];
-    // //console.log('<ground.data.length=', ground.data.length);
-    // const img = new Image();
-    // img.src = '../assets/Adventurer/adventurer-Sheet.png';
-    // const sprite = new Sprite(img, 16, 16, [[0, 0]], 160);
-    // sprite.draw(0, 100, 100);
-    // for (let i = 0; i < ground.data.length; i++) {}
   }
 
   drawRect(context) {

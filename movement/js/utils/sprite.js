@@ -25,3 +25,11 @@ Sprite.prototype = {
     DEBUG_MODE && ctx.strokeRect(x, y, this.sizeW, this.sizeH);
   },
 };
+
+function drawAllSpritePositions(sprite, itemSize, cols, rows) {
+  for (let y = 0; y < cols; y++) {
+    for (let x = 0; x < rows; x++) {
+      sprite.draw(y * rows + x, x * itemSize, y * itemSize);
+    }
+  }
+}
