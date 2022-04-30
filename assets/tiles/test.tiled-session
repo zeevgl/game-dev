@@ -20,8 +20,8 @@
             "scale": 1,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 209,
-                "y": 1078
+                "x": 640,
+                "y": 639.5
             }
         },
         "D:/projects/game-dev/assets/maps/map1.tmx#forest": {
@@ -32,8 +32,8 @@
             "scale": 1.5,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 98.66666666666669,
-                "y": 190
+                "x": 128,
+                "y": 128.33333333333331
             }
         },
         "D:/projects/game-dev/assets/maps/map2.tmx#Tileset": {
@@ -43,8 +43,8 @@
             "scale": 0.5,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 378,
-                "y": 406
+                "x": 640,
+                "y": 305
             }
         },
         "D:/projects/game-dev/assets/maps/map3.tmx#ground": {
