@@ -2,7 +2,7 @@ class Level {
   constructor(map) {
     this.map = map;
     this.sprite = null;
-    this.tileSize = 70;
+    this.tileSize = 67;
     this.initSprite_70();
     ////int oneDindex = (row * length_of_row) + column; // Indexes
   }
@@ -10,7 +10,7 @@ class Level {
   update(deltaTime, timestamp) {}
 
   draw(canvas) {
-    this.sprite.draw(0, 380, 300);
+    this.sprite.draw(8, 380, 300);
     const ground = this.map.layers[0];
 
     for (let y = 0; y < this.map.height; y++) {
