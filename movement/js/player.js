@@ -81,7 +81,7 @@ class Player extends Actor {
   }
 
   draw(canvas) {
-    this.drawRect();
+    //this.drawRect();
     this.drawSprite();
   }
 

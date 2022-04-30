@@ -10,7 +10,7 @@ class Level {
   update(deltaTime, timestamp) {}
 
   draw(canvas) {
-    this.sprite.draw(8, 380, 300);
+    //this.sprite.draw(8, 0, 0);
     const ground = this.map.layers[0];
 
     for (let y = 0; y < this.map.height; y++) {
@@ -21,6 +21,13 @@ class Level {
         }
       }
     }
+
+    // for (let y = 0; y < 12; y++) {
+    //   for (let x = 0; x < 12; x++) {
+    //     //const tile = this.getTile(ground.data, x, y);
+    //     this.sprite.draw(y * 12 + x, x * this.tileSize, y * this.tileSize);
+    //   }
+    // }
   }
 
   getTile(tiles, col, row) {
@@ -63,6 +70,7 @@ class Level {
         positions.push([i * imgWidth, j * imgHeight]);
       }
     }
+    console.log('positions=', positions);
 
     this.sprite = new Sprite(
       img,
