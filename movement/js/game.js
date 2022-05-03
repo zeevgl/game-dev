@@ -18,7 +18,7 @@ class Game {
     ctx.save();
     if (
       this.player.x + PLAYER_SIZE > this.gameWidth / 2 &&
-      this.player.x + PLAYER_SIZE < 900
+      this.player.x + PLAYER_SIZE < 1900
     ) {
       //follow
       context.translate(-this.player.x - PLAYER_SIZE + canvas.width / 2, 0);
@@ -46,9 +46,6 @@ class Game {
   drawDebug(context) {}
 
   calcColision() {
-    //this.player.y = 350;
-    // this.player.accV.vy = 0;
-
     console.log('this.player boxX=', this.player.boxX);
 
     //check if platform
@@ -79,8 +76,8 @@ class Game {
         p.type === 'wall' &&
         // this.player.boxY > p.y &&
         // this.player.boxY <= p.y + p.height &&
-        this.player.boxX >= p.x &&
-        this.player.boxX < p.x + p.width
+        this.player.centerX >= p.x
+         //&&        this.player.centerX < p.x + p.width
       ) {
         console.log('wall');
         console.log('p.x=', p.x);
@@ -92,8 +89,8 @@ class Game {
     });
 
     if (resWall) {
-      this.player.x = 1050;
-      this.player.stop();
+      //this.player.stop();
+      this.player.x =resWall.x - this.player.size/2;
     }
   }
 }

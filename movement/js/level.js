@@ -26,7 +26,8 @@ class Level {
     }
 
     //draw platforms
-    this.drawPlatforms(context);
+    
+    DEBUG_MODE && this.drawPlatforms(context);
   }
 
   drawPlatforms(context) {
