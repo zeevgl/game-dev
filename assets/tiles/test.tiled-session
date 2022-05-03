@@ -3,7 +3,7 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "D:/projects/game-dev/assets/maps/map4.tmx",
+    "activeFile": "D:/projects/game-dev/assets/maps/shira2.tmx",
     "expandedProjectPaths": [
     ],
     "file.lastUsedOpenFilter": "All Files (*)",
@@ -52,15 +52,38 @@
             "scaleInDock": 3
         },
         "D:/projects/game-dev/assets/maps/map4.tmx": {
-            "scale": 1,
+            "scale": 0.5,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 210,
-                "y": 595
+                "x": 699,
+                "y": 315
             }
         },
         "D:/projects/game-dev/assets/maps/map4.tmx#test1": {
             "scaleInDock": 1
+        },
+        "D:/projects/game-dev/assets/maps/shira1.tmx": {
+            "scale": 0.75,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 1749.9999999999998,
+                "y": 316
+            }
+        },
+        "D:/projects/game-dev/assets/maps/shira1.tmx#tiles": {
+            "scaleInDock": 0.5
+        },
+        "D:/projects/game-dev/assets/maps/shira2.tmx": {
+            "scale": 0.75,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 2974,
+                "y": 582.6666666666665
+            }
+        },
+        "D:/projects/game-dev/assets/maps/shira2.tmx#tiles_spritesheet": {
+            "scaleInDock": 0.5,
+            "scaleInEditor": 1
         }
     },
     "last.exportedFilePath": "D:/projects/game-dev/assets/maps",
@@ -71,15 +94,16 @@
     "map.lastUsedFormat": "tmx",
     "map.tileHeight": 70,
     "map.tileWidth": 70,
-    "map.width": 20,
+    "map.width": 50,
     "openFiles": [
-        "D:/projects/game-dev/assets/maps/map1.tmx",
-        "D:/projects/game-dev/assets/maps/map2.tmx",
-        "D:/projects/game-dev/assets/maps/map3.tmx",
-        "D:/projects/game-dev/assets/maps/map4.tmx"
+        "D:/projects/game-dev/assets/maps/map4.tmx",
+        "D:/projects/game-dev/assets/maps/shira1.tmx",
+        "D:/projects/game-dev/assets/maps/shira2.tmx"
     ],
     "project": "test.tiled-project",
     "recentFiles": [
+        "D:/projects/game-dev/assets/maps/shira1.tmx",
+        "D:/projects/game-dev/assets/maps/shira2.tmx",
         "D:/projects/game-dev/assets/maps/map4.tmx",
         "D:/projects/game-dev/assets/maps/map1.tmx",
         "D:/projects/game-dev/assets/maps/map2.tmx",

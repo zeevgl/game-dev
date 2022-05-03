@@ -63,10 +63,13 @@ class Game {
     });
 
     if (res) {
+      console.log('res.name=', res.name);
       const isAbove = this.player.y - res.y < 0;
-console.log('isAbove=', isAbove);
+      console.log('isAbove=', isAbove);
+      if (!isAbove) {
+        debugger;
+      }
       ///////////
-
 
       //check what is touching
       const isBottomTouching = this.player.boxY > res.y;
@@ -88,9 +91,10 @@ console.log('isAbove=', isAbove);
       if (isAbove) {
         this.player.y = res.y - this.player.size;
         this.player.accV.vy = 0;
-      } else if (isRightTouching) {
-        debugger
-        console.log('=============');
+      } else {
+        //below
+        this.player.y = res.y + res.height;
+        this.player.accV.vy = -this.player.accV.vy;
       }
     }
   }
