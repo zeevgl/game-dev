@@ -6,7 +6,7 @@ class Level {
     this.sprite = null;
     this.platfroms = null;
     this.tilesPosition = [];
-    this.tileSize = 67;
+    this.tileSize = 70;
     this.initSprite();
     this.initPlatform();
   }
@@ -24,6 +24,15 @@ class Level {
         }
       }
     }
+
+    //draw platforms
+    this.drawPlatforms(context);
+  }
+
+  drawPlatforms(context) {
+    this.platfroms.objects.forEach((p) => {
+      context.strokeRect(p.x, p.y, p.width, p.height);
+    });
   }
 
   getTile(tiles, col, row) {

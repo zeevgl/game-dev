@@ -20,7 +20,7 @@
 </data>
  </layer>
  <objectgroup id="2" name="platform">
-  <object id="3" name="first" type="platform" x="0" y="490" width="420" height="70"/>
+  <object id="3" name="first" type="platform" x="0" y="560" width="420" height="70"/>
   <object id="4" name="second" type="platform" x="560" y="560" width="560" height="70"/>
   <object id="5" name="wall" type="wall" x="1050" y="350" width="70" height="210"/>
   <object id="6" name="third" type="platform" x="1050" y="280" width="350" height="70"/>

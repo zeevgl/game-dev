@@ -31,7 +31,7 @@ class Game {
     }
 
     this.currentLevel.draw(context);
-    this.drawDebug(context)
+    this.drawDebug(context);
     this.player.draw(context);
     ctx.restore();
   }
@@ -43,47 +43,7 @@ class Game {
     }
   }
 
-  drawDebug(context) {
-    context.fillRect(100, 0, 10, 10);
-
-    context.fillRect(1050, 350, 10, 10);
-    context.fillRect(1050 + 70, 350, 10, 10);
-    context.fillRect(1050 + 70 , 350 + 210, 10, 10);
-    context.fillRect(1050, 350 + 210, 10, 10);
-
-
-    ///
-
-    context.fillRect(0, 490, 10, 10);
-    context.fillRect(0 + 420, 490, 10, 10);
-    context.fillRect(0 + 420 , 490 + 70, 10, 10);
-    context.fillRect(0, 490 + 70, 10, 10);
-
-    // {
-    //   "height":70,
-    //   "id":3,
-    //   "name":"first",
-    //   "rotation":0,
-    //   "type":"platform",
-    //   "visible":true,
-    //   "width":420,
-    //   "x":0,
-    //   "y":490
-    //  },
-
-
-    // {
-    //   "height":70,
-    //   "id":3,
-    //   "name":"first",
-    //   "rotation":0,
-    //   "type":"platform",
-    //   "visible":true,
-    //   "width":420,
-    //   "x":0,
-    //   "y":560
-    //  }, 
-  }
+  drawDebug(context) {}
 
   calcColision() {
     //this.player.y = 350;

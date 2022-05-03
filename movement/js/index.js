@@ -3,7 +3,7 @@ const ctx = canvas.getContext("2d");
 ctx.imageSmoothingEnabled = false;
 
 const GAME_WIDTH = 800;
-const GAME_HEIGHT = 600;
+const GAME_HEIGHT = 630;
 const PLAYER_SIZE = 150;
 const GRAVITY = PLAYER_SIZE * 0.001; //0.1;
 const DEBUG_MODE = true;
