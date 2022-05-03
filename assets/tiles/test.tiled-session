@@ -51,11 +51,11 @@
             "scaleInDock": 3
         },
         "D:/projects/game-dev/assets/maps/map4.tmx": {
-            "scale": 1,
+            "scale": 2,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 353,
-                "y": 374
+                "x": 263,
+                "y": 469
             }
         },
         "D:/projects/game-dev/assets/maps/map4.tmx#test1": {
@@ -79,10 +79,10 @@
     ],
     "project": "test.tiled-project",
     "recentFiles": [
+        "D:/projects/game-dev/assets/maps/map4.tmx",
         "D:/projects/game-dev/assets/maps/map1.tmx",
         "D:/projects/game-dev/assets/maps/map2.tmx",
-        "D:/projects/game-dev/assets/maps/map3.tmx",
-        "D:/projects/game-dev/assets/maps/map4.tmx"
+        "D:/projects/game-dev/assets/maps/map3.tmx"
     ],
     "tileset.embedInMap": true,
     "tileset.tileSize": {

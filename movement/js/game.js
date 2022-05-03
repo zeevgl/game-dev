@@ -74,14 +74,14 @@ class Game {
     const resWall = this.currentLevel.platfroms.objects.find((p, i) => {
       if (
         p.type === 'wall' &&
-        // this.player.boxY > p.y &&
-        // this.player.boxY <= p.y + p.height &&
-        this.player.boxX >= p.x
-         //&&        this.player.centerX < p.x + p.width
+        this.player.boxY > p.y &&
+        this.player.boxY <= p.y + p.height &&
+        this.player.boxX > p.x &&
+        this.player.centerX < p.x + p.width
       ) {
         console.log('wall');
-        console.log('p.x=', p.x);
-        console.log('player = ', this.player.x, this.player.boxX);
+        // console.log('p.x=', p.x);
+        // console.log('player = ', this.player.x, this.player.boxX);
         return true;
       }
 
@@ -90,7 +90,7 @@ class Game {
 
     if (resWall) {
       //this.player.stop();
-      this.player.x =resWall.x - this.player.size;
+      this.player.x = resWall.x - this.player.size;
     }
   }
 }
