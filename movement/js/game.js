@@ -46,6 +46,56 @@ class Game {
   drawDebug(context) {}
 
   calcColision() {
+    //check what player touches
+    const res = this.currentLevel.platfroms.objects.find((p, i) => {
+      //check colision. todo extruct maybe.....
+
+      if (
+        this.player.x < p.x + p.width &&
+        this.player.boxX > p.x &&
+        this.player.y < p.y + p.height &&
+        this.player.boxY > p.y
+      ) {
+        return true;
+      }
+
+      return false;
+    });
+
+    if (res) {
+      const isAbove = this.player.y - res.y < 0;
+console.log('isAbove=', isAbove);
+      ///////////
+
+
+      //check what is touching
+      const isBottomTouching = this.player.boxY > res.y;
+      //this.player.boxY > res.y && this.player.boxY <= res.y + res.height;
+
+      const isTopTouching =
+        this.player.y < res.y + res.height && this.player.y >= res.y;
+
+      const isRightTouching = this.player.boxX > res.x; //&& this.player.centerX < res.x + res.width;
+
+      const isLeftTouching = this.player.x < res.x + res.width; //&& this.player.centerX > res.x;
+
+      // console.log('isTop=', isTopTouching);
+      // console.log('isBottom=', isBottomTouching);
+      // console.log('isRight=', isRightTouching);
+      // console.log('isLeft=', isLeftTouching);
+      console.log('----');
+
+      if (isAbove) {
+        this.player.y = res.y - this.player.size;
+        this.player.accV.vy = 0;
+      } else if (isRightTouching) {
+        debugger
+        console.log('=============');
+      }
+    }
+  }
+
+  calcColisionX() {
     console.log('this.player boxX=', this.player.boxX);
 
     //check if platform

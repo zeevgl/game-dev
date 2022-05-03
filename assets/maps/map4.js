@@ -82,22 +82,11 @@
                  "y":350
                 }, 
                 {
-                 "height":0,
-                 "id":11,
-                 "name":"",
+                 "height":140,
+                 "id":15,
+                 "name":"wall",
                  "rotation":0,
                  "type":"",
-                 "visible":true,
-                 "width":0,
-                 "x":70,
-                 "y":-140
-                }, 
-                {
-                 "height":140,
-                 "id":14,
-                 "name":"wall0",
-                 "rotation":0,
-                 "type":"wall",
                  "visible":true,
                  "width":70,
                  "x":210,
@@ -110,7 +99,7 @@
          "y":0
         }],
  "nextlayerid":3,
- "nextobjectid":15,
+ "nextobjectid":17,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.8.4",

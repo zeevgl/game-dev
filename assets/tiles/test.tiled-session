@@ -6,6 +6,7 @@
     "activeFile": "D:/projects/game-dev/assets/maps/map4.tmx",
     "expandedProjectPaths": [
     ],
+    "file.lastUsedOpenFilter": "All Files (*)",
     "fileStates": {
         "": {
             "scaleInDock": 3
@@ -20,8 +21,8 @@
             "scale": 1,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 640,
-                "y": 639.5
+                "x": 331,
+                "y": 481
             }
         },
         "D:/projects/game-dev/assets/maps/map1.tmx#forest": {
@@ -33,7 +34,7 @@
             "selectedLayer": 0,
             "viewCenter": {
                 "x": 128,
-                "y": 128.33333333333331
+                "y": 128.66666666666669
             }
         },
         "D:/projects/game-dev/assets/maps/map2.tmx#Tileset": {
@@ -44,18 +45,18 @@
             "selectedLayer": 0,
             "viewCenter": {
                 "x": 640,
-                "y": 305
+                "y": 306
             }
         },
         "D:/projects/game-dev/assets/maps/map3.tmx#ground": {
             "scaleInDock": 3
         },
         "D:/projects/game-dev/assets/maps/map4.tmx": {
-            "scale": 2,
+            "scale": 1,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 263,
-                "y": 469
+                "x": 210,
+                "y": 595
             }
         },
         "D:/projects/game-dev/assets/maps/map4.tmx#test1": {
