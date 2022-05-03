@@ -90,7 +90,7 @@
                  "visible":true,
                  "width":70,
                  "x":210,
-                 "y":210
+                 "y":420
                 }],
          "opacity":1,
          "type":"objectgroup",

@@ -24,6 +24,6 @@
   <object id="4" name="second" type="platform" x="560" y="560" width="560" height="70"/>
   <object id="5" name="wall" type="wallZ" x="1050" y="420" width="70" height="140"/>
   <object id="6" name="third" type="platform" x="1050" y="350" width="350" height="70"/>
-  <object id="15" name="wall" x="210" y="210" width="70" height="140"/>
+  <object id="15" name="wall" x="210" y="420" width="70" height="140"/>
  </objectgroup>
 </map>

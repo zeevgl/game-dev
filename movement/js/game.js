@@ -67,41 +67,29 @@ class Game {
         //debugger
       }
       console.log('res.name=', res.name);
-      const isAbove = this.player.boxY < (res.y + res.height);
-      const isBellow = this.player.boxY > (res.y + res.height);
-      const isOnLeft = this.player.x - res.x > 0;
-
+      const isAbove = this.player.boxY < res.y + res.height;
+      const isBellow = this.player.boxY > res.y + res.height;
+      const isOnLeft = this.player.boxX < res.x + res.width;
+      const isOnRight = this.player.boxX > res.x + res.width;
 
       console.log('isAbove=', isAbove);
       console.log('isBellow=', isBellow);
       console.log('isOnLeft=', isOnLeft);
+      console.log('isOnRight=', isOnRight);
 
-      ///////////
-
-      //check what is touching
-      // const isBottomTouching = this.player.boxY > res.y;
-      // //this.player.boxY > res.y && this.player.boxY <= res.y + res.height;
-
-      // const isTopTouching =
-      //   this.player.y < res.y + res.height && this.player.y >= res.y;
-
-      // const isRightTouching = this.player.boxX > res.x; //&& this.player.centerX < res.x + res.width;
-
-      // const isLeftTouching = this.player.x < res.x + res.width; //&& this.player.centerX > res.x;
-
-      // console.log('isTop=', isTopTouching);
-      // console.log('isBottom=', isBottomTouching);
-      // console.log('isRight=', isRightTouching);
-      // console.log('isLeft=', isLeftTouching);
       console.log('----');
 
       if (isAbove) {
-        this.player.y = res.y - this.player.size;
+        this.player.y = res.y - this.player.height;
         this.player.accV.vy = 0;
       } else if (isBellow) {
         //bellow
         this.player.y = res.y + res.height;
         this.player.accV.vy = -this.player.accV.vy;
+      } else if (isOnLeft) {
+        this.player.x = res.x - this.player.width;
+      } else if (!isOnLeft) {
+        this.player.x = res.x + res.width;
       }
     });
 
