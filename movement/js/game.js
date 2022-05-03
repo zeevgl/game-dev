@@ -76,7 +76,7 @@ class Game {
         p.type === 'wall' &&
         // this.player.boxY > p.y &&
         // this.player.boxY <= p.y + p.height &&
-        this.player.centerX >= p.x
+        this.player.boxX >= p.x
          //&&        this.player.centerX < p.x + p.width
       ) {
         console.log('wall');
@@ -90,7 +90,7 @@ class Game {
 
     if (resWall) {
       //this.player.stop();
-      this.player.x =resWall.x - this.player.size/2;
+      this.player.x =resWall.x - this.player.size;
     }
   }
 }

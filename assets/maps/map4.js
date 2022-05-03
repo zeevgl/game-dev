@@ -60,7 +60,7 @@
                  "y":560
                 }, 
                 {
-                 "height":210,
+                 "height":140,
                  "id":5,
                  "name":"wall",
                  "rotation":0,
@@ -68,7 +68,7 @@
                  "visible":true,
                  "width":70,
                  "x":1050,
-                 "y":350
+                 "y":420
                 }, 
                 {
                  "height":70,
@@ -79,7 +79,7 @@
                  "visible":true,
                  "width":350,
                  "x":1050,
-                 "y":280
+                 "y":350
                 }],
          "opacity":1,
          "type":"objectgroup",
