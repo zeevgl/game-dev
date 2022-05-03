@@ -62,22 +62,11 @@ class Game {
       return false;
     });
 
-    objects.forEach((res, i, arr) => {
-      if (res.name === 'wall') {
-        //debugger
-      }
-      console.log('res.name=', res.name);
+    objects.forEach((res) => {
       const isAbove = this.player.boxY < res.y + res.height;
       const isBellow = this.player.boxY > res.y + res.height;
       const isOnLeft = this.player.boxX < res.x + res.width;
       const isOnRight = this.player.boxX > res.x + res.width;
-
-      console.log('isAbove=', isAbove);
-      console.log('isBellow=', isBellow);
-      console.log('isOnLeft=', isOnLeft);
-      console.log('isOnRight=', isOnRight);
-
-      console.log('----');
 
       if (isAbove) {
         this.player.y = res.y - this.player.height;
@@ -87,45 +76,10 @@ class Game {
         this.player.accV.vy = -this.player.accV.vy;
       } else if (isOnLeft) {
         this.player.x = res.x - this.player.width;
-      } else if (!isOnLeft) {
+      } else if (isOnRight) {
         this.player.x = res.x + res.width;
       }
     });
-
-    // if (res) {
-    //   console.log('res.name=', res.name);
-    //   const isAbove = this.player.y - res.y < 0;
-    //   const isOnLeft = this.player.boxX - res.x < 0;
-    //   console.log('isOnLeft=', isOnLeft);
-
-    //   ///////////
-
-    //   //check what is touching
-    //   const isBottomTouching = this.player.boxY > res.y;
-    //   //this.player.boxY > res.y && this.player.boxY <= res.y + res.height;
-
-    //   const isTopTouching =
-    //     this.player.y < res.y + res.height && this.player.y >= res.y;
-
-    //   const isRightTouching = this.player.boxX > res.x; //&& this.player.centerX < res.x + res.width;
-
-    //   const isLeftTouching = this.player.x < res.x + res.width; //&& this.player.centerX > res.x;
-
-    //   // console.log('isTop=', isTopTouching);
-    //   // console.log('isBottom=', isBottomTouching);
-    //   // console.log('isRight=', isRightTouching);
-    //   // console.log('isLeft=', isLeftTouching);
-    //   console.log('----');
-
-    //   if (isAbove) {
-    //     this.player.y = res.y - this.player.size;
-    //     this.player.accV.vy = 0;
-    //   } else {
-    //     //below
-    //     this.player.y = res.y + res.height;
-    //     this.player.accV.vy = -this.player.accV.vy;
-    //   }
-    // }
   }
 
   calcColisionX() {
