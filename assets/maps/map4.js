@@ -90,7 +90,7 @@
                  "visible":true,
                  "width":70,
                  "x":210,
-                 "y":210
+                 "y":420
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -99,7 +99,7 @@
          "y":0
         }],
  "nextlayerid":3,
- "nextobjectid":17,
+ "nextobjectid":18,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.8.4",

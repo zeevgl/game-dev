@@ -65,10 +65,9 @@ class Game {
     if (res) {
       console.log('res.name=', res.name);
       const isAbove = this.player.y - res.y < 0;
-      console.log('isAbove=', isAbove);
-      if (!isAbove) {
-        debugger;
-      }
+      const isOnLeft = this.player.boxX - res.x < 0;
+      console.log('isOnLeft=', isOnLeft);
+
       ///////////
 
       //check what is touching

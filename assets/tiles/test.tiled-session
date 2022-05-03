@@ -60,7 +60,8 @@
             }
         },
         "D:/projects/game-dev/assets/maps/map4.tmx#test1": {
-            "scaleInDock": 1
+            "scaleInDock": 1,
+            "scaleInEditor": 1
         },
         "D:/projects/game-dev/assets/maps/shira1.tmx": {
             "scale": 0.75,
