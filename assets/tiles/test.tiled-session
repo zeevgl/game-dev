@@ -3,19 +3,22 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "D:/projects/game-dev/assets/maps/shira2.tmx",
+    "activeFile": "D:/projects/game-dev/assets/maps/map4.tmx",
     "expandedProjectPaths": [
     ],
     "file.lastUsedOpenFilter": "All Files (*)",
     "fileStates": {
         "": {
-            "scaleInDock": 3
+            "scaleInDock": 1
         },
         "#Tileset": {
             "scaleInDock": 4
         },
         "#tiles_spritesheet": {
             "scaleInDock": 1
+        },
+        "#z": {
+            "dynamicWrapping": true
         },
         "D:/projects/game-dev/assets/maps/map1.tmx": {
             "scale": 1,
@@ -52,14 +55,15 @@
             "scaleInDock": 3
         },
         "D:/projects/game-dev/assets/maps/map4.tmx": {
-            "scale": 0.5,
-            "selectedLayer": 1,
+            "scale": 4,
+            "selectedLayer": 0,
             "viewCenter": {
-                "x": 699,
-                "y": 314
+                "x": 315.625,
+                "y": 581.5
             }
         },
         "D:/projects/game-dev/assets/maps/map4.tmx#test1": {
+            "dynamicWrapping": false,
             "scaleInDock": 1,
             "scaleInEditor": 1
         },
@@ -95,11 +99,9 @@
     "map.lastUsedFormat": "tmx",
     "map.tileHeight": 70,
     "map.tileWidth": 70,
-    "map.width": 50,
+    "map.width": 300,
     "openFiles": [
-        "D:/projects/game-dev/assets/maps/map4.tmx",
-        "D:/projects/game-dev/assets/maps/shira1.tmx",
-        "D:/projects/game-dev/assets/maps/shira2.tmx"
+        "D:/projects/game-dev/assets/maps/map4.tmx"
     ],
     "project": "test.tiled-project",
     "recentFiles": [
@@ -114,5 +116,6 @@
     "tileset.tileSize": {
         "height": 70,
         "width": 70
-    }
+    },
+    "tileset.type": 0
 }

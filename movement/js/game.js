@@ -49,10 +49,11 @@ class Game {
     //check what player touches
     const objects = this.currentLevel.platfroms.objects.filter((p, i) => {
       //check colision. todo extruct maybe.....
+      //TODO:Zeev: make the player a bit wider so it will be easir to catch
 
       if (
-        this.player.x < p.x + p.width &&
-        this.player.boxX > p.x &&
+        this.player.centerX  < p.x + p.width &&
+        this.player.centerX  > p.x &&
         this.player.y < p.y + p.height &&
         this.player.boxY > p.y
       ) {
