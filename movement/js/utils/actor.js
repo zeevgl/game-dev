@@ -48,6 +48,10 @@ class Actor extends Shape {
     return this.x + this.width;
   }
 
+  get centerX() {
+    return this.x + this.width / 2;
+  }
+
   get boxY() {
     return this.y + this.height;
   }

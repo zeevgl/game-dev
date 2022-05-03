@@ -9,7 +9,6 @@ class Level {
     this.tileSize = 67;
     this.initSprite();
     this.initPlatform();
-    //this.initXy();
   }
 
   update(deltaTime, timestamp) {}
@@ -45,25 +44,9 @@ class Level {
     );
     this.sprite = sprite;
     this.positions = positions;
-
-    //each tile must have x,y
   }
 
   initPlatform() {
     this.platfroms = this.map.layers[1];
   }
-
-  // initXy() {
-  //   const ground = this.map.layers[0];
-
-  //   for (let y = 0; y < this.map.height; y++) {
-  //     for (let x = 0; x < this.map.width; x++) {
-  //       const tile = this.getTile(ground.data, x, y);
-  //       if (tile !== 0) {
-  //         // x * this.tileSize, y * this.tileSiz
-  //         //this.sprite.draw(tile - 1, x * this.tileSize, y * this.tileSize);
-  //       }
-  //     }
-  //   }
-  // }
 }

@@ -52,17 +52,12 @@ class Game {
     //   this.player.y + this.player.size
     // );
 
-    const playerX = this.player.x + this.player.size / 2;
-    const playerYBottom = this.player.y + this.player.size;
-
-    console.log('playerYBottom=', playerYBottom);
-
     const res = this.currentLevel.platfroms.objects.find((p, i) => {
       if (
-        playerYBottom > p.y &&
-        playerYBottom <= p.y + p.height &&
-        playerX > p.x - this.player.size * 0.3 &&
-        playerX < p.x + p.width + this.player.size * 0.05
+        this.player.boxY > p.y &&
+        this.player.boxY <= p.y + p.height &&
+        this.player.centerX > p.x - this.player.size * 0.3 &&
+        this.player.centerX < p.x + p.width + this.player.size * 0.05
       ) {
         return true;
       }
