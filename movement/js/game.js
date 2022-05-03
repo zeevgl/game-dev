@@ -62,16 +62,19 @@ class Game {
       return false;
     });
 
-    objects.forEach((res,i, arr) => {
-      
-      if (res.name === 'wall'){
+    objects.forEach((res, i, arr) => {
+      if (res.name === 'wall') {
         //debugger
       }
       console.log('res.name=', res.name);
-      const isAbove = this.player.y - res.y < 0;
-      const isBellow = this.player.y - (res.y + res.height) < 0;
-      const isOnLeft = this.player.boxX - res.x > 0;
+      const isAbove = this.player.boxY < (res.y + res.height);
+      const isBellow = this.player.boxY > (res.y + res.height);
+      const isOnLeft = this.player.x - res.x > 0;
+
+
       console.log('isAbove=', isAbove);
+      console.log('isBellow=', isBellow);
+      console.log('isOnLeft=', isOnLeft);
 
       ///////////
 
@@ -96,7 +99,7 @@ class Game {
         this.player.y = res.y - this.player.size;
         this.player.accV.vy = 0;
       } else if (isBellow) {
-        //below
+        //bellow
         this.player.y = res.y + res.height;
         this.player.accV.vy = -this.player.accV.vy;
       }
