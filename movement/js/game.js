@@ -47,7 +47,7 @@ class Game {
 
   calcColision() {
     //check what player touches
-    const res = this.currentLevel.platfroms.objects.find((p, i) => {
+    const objects = this.currentLevel.platfroms.objects.filter((p, i) => {
       //check colision. todo extruct maybe.....
 
       if (
@@ -62,24 +62,29 @@ class Game {
       return false;
     });
 
-    if (res) {
+    objects.forEach((res,i, arr) => {
+      
+      if (res.name === 'wall'){
+        //debugger
+      }
       console.log('res.name=', res.name);
       const isAbove = this.player.y - res.y < 0;
-      const isOnLeft = this.player.boxX - res.x < 0;
-      console.log('isOnLeft=', isOnLeft);
+      const isBellow = this.player.y - (res.y + res.height) < 0;
+      const isOnLeft = this.player.boxX - res.x > 0;
+      console.log('isAbove=', isAbove);
 
       ///////////
 
       //check what is touching
-      const isBottomTouching = this.player.boxY > res.y;
-      //this.player.boxY > res.y && this.player.boxY <= res.y + res.height;
+      // const isBottomTouching = this.player.boxY > res.y;
+      // //this.player.boxY > res.y && this.player.boxY <= res.y + res.height;
 
-      const isTopTouching =
-        this.player.y < res.y + res.height && this.player.y >= res.y;
+      // const isTopTouching =
+      //   this.player.y < res.y + res.height && this.player.y >= res.y;
 
-      const isRightTouching = this.player.boxX > res.x; //&& this.player.centerX < res.x + res.width;
+      // const isRightTouching = this.player.boxX > res.x; //&& this.player.centerX < res.x + res.width;
 
-      const isLeftTouching = this.player.x < res.x + res.width; //&& this.player.centerX > res.x;
+      // const isLeftTouching = this.player.x < res.x + res.width; //&& this.player.centerX > res.x;
 
       // console.log('isTop=', isTopTouching);
       // console.log('isBottom=', isBottomTouching);
@@ -90,12 +95,47 @@ class Game {
       if (isAbove) {
         this.player.y = res.y - this.player.size;
         this.player.accV.vy = 0;
-      } else {
+      } else if (isBellow) {
         //below
         this.player.y = res.y + res.height;
         this.player.accV.vy = -this.player.accV.vy;
       }
-    }
+    });
+
+    // if (res) {
+    //   console.log('res.name=', res.name);
+    //   const isAbove = this.player.y - res.y < 0;
+    //   const isOnLeft = this.player.boxX - res.x < 0;
+    //   console.log('isOnLeft=', isOnLeft);
+
+    //   ///////////
+
+    //   //check what is touching
+    //   const isBottomTouching = this.player.boxY > res.y;
+    //   //this.player.boxY > res.y && this.player.boxY <= res.y + res.height;
+
+    //   const isTopTouching =
+    //     this.player.y < res.y + res.height && this.player.y >= res.y;
+
+    //   const isRightTouching = this.player.boxX > res.x; //&& this.player.centerX < res.x + res.width;
+
+    //   const isLeftTouching = this.player.x < res.x + res.width; //&& this.player.centerX > res.x;
+
+    //   // console.log('isTop=', isTopTouching);
+    //   // console.log('isBottom=', isBottomTouching);
+    //   // console.log('isRight=', isRightTouching);
+    //   // console.log('isLeft=', isLeftTouching);
+    //   console.log('----');
+
+    //   if (isAbove) {
+    //     this.player.y = res.y - this.player.size;
+    //     this.player.accV.vy = 0;
+    //   } else {
+    //     //below
+    //     this.player.y = res.y + res.height;
+    //     this.player.accV.vy = -this.player.accV.vy;
+    //   }
+    // }
   }
 
   calcColisionX() {
