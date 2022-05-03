@@ -83,7 +83,6 @@ class Game {
         this.player.y = res.y - this.player.height;
         this.player.accV.vy = 0;
       } else if (isBellow) {
-        //bellow
         this.player.y = res.y + res.height;
         this.player.accV.vy = -this.player.accV.vy;
       } else if (isOnLeft) {
