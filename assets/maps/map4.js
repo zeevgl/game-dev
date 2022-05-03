@@ -42,43 +42,43 @@
                  "id":3,
                  "name":"first",
                  "rotation":0,
-                 "type":"",
+                 "type":"platform",
                  "visible":true,
                  "width":420,
                  "x":0,
-                 "y":560
+                 "y":490
                 }, 
                 {
                  "height":70,
                  "id":4,
                  "name":"second",
                  "rotation":0,
-                 "type":"",
+                 "type":"platform",
                  "visible":true,
                  "width":560,
                  "x":560,
                  "y":560
                 }, 
                 {
-                 "height":280,
+                 "height":210,
                  "id":5,
                  "name":"wall",
                  "rotation":0,
-                 "type":"",
+                 "type":"wall",
                  "visible":true,
                  "width":70,
                  "x":1050,
-                 "y":280
+                 "y":350
                 }, 
                 {
                  "height":70,
                  "id":6,
                  "name":"third",
                  "rotation":0,
-                 "type":"",
+                 "type":"platform",
                  "visible":true,
-                 "width":280,
-                 "x":1120,
+                 "width":350,
+                 "x":1050,
                  "y":280
                 }],
          "opacity":1,

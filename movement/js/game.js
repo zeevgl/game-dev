@@ -31,6 +31,7 @@ class Game {
     }
 
     this.currentLevel.draw(context);
+    this.drawDebug(context)
     this.player.draw(context);
     ctx.restore();
   }
@@ -42,18 +43,59 @@ class Game {
     }
   }
 
+  drawDebug(context) {
+    context.fillRect(100, 0, 10, 10);
+
+    context.fillRect(1050, 350, 10, 10);
+    context.fillRect(1050 + 70, 350, 10, 10);
+    context.fillRect(1050 + 70 , 350 + 210, 10, 10);
+    context.fillRect(1050, 350 + 210, 10, 10);
+
+
+    ///
+
+    context.fillRect(0, 490, 10, 10);
+    context.fillRect(0 + 420, 490, 10, 10);
+    context.fillRect(0 + 420 , 490 + 70, 10, 10);
+    context.fillRect(0, 490 + 70, 10, 10);
+
+    // {
+    //   "height":70,
+    //   "id":3,
+    //   "name":"first",
+    //   "rotation":0,
+    //   "type":"platform",
+    //   "visible":true,
+    //   "width":420,
+    //   "x":0,
+    //   "y":490
+    //  },
+
+
+    // {
+    //   "height":70,
+    //   "id":3,
+    //   "name":"first",
+    //   "rotation":0,
+    //   "type":"platform",
+    //   "visible":true,
+    //   "width":420,
+    //   "x":0,
+    //   "y":560
+    //  }, 
+  }
+
   calcColision() {
     //this.player.y = 350;
     // this.player.accV.vy = 0;
 
-    // console.log(
-    //   'this.player=',
-    //   this.player.x,
-    //   this.player.y + this.player.size
-    // );
+    console.log('this.player boxX=', this.player.boxX);
+
+    //check if platform
 
     const res = this.currentLevel.platfroms.objects.find((p, i) => {
       if (
+        p.type === 'platform' &&
         this.player.boxY > p.y &&
         this.player.boxY <= p.y + p.height &&
         this.player.centerX > p.x - this.player.size * 0.3 &&
@@ -65,11 +107,33 @@ class Game {
       return false;
     });
 
-    // console.log('res=', res);
-
     if (res) {
       this.player.y = res.y - this.player.size;
       this.player.accV.vy = 0;
+    }
+
+    //cehck if wall
+
+    const resWall = this.currentLevel.platfroms.objects.find((p, i) => {
+      if (
+        p.type === 'wall' &&
+        // this.player.boxY > p.y &&
+        // this.player.boxY <= p.y + p.height &&
+        this.player.boxX >= p.x &&
+        this.player.boxX < p.x + p.width
+      ) {
+        console.log('wall');
+        console.log('p.x=', p.x);
+        console.log('player = ', this.player.x, this.player.boxX);
+        return true;
+      }
+
+      return false;
+    });
+
+    if (resWall) {
+      this.player.x = 1050;
+      this.player.stop();
     }
   }
 }
