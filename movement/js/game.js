@@ -3,9 +3,10 @@ class Game {
     this.gameWidth = gameWidth;
     this.gameHeight = gameHeight;
     this.level4 = new Level(TileMaps.map4, '../assets/maps');
+    this.level5 = new Level(TileMaps.map5, '../assets/maps');
     this.player = new Player('hero', gameWidth, gameHeight);
     this.input = new InputHandler(this.player, this);
-    this.currentLevel = this.level4;
+    this.currentLevel = this.level5;
   }
 
   update(deltaTime, timestamp) {
@@ -18,7 +19,7 @@ class Game {
     ctx.save();
     if (
       this.player.x + PLAYER_SIZE > this.gameWidth / 2 &&
-      this.player.x + PLAYER_SIZE < 1900
+      this.player.x + PLAYER_SIZE < 190000
     ) {
       //follow
       context.translate(-this.player.x - PLAYER_SIZE + canvas.width / 2, 0);
@@ -52,8 +53,8 @@ class Game {
       //TODO:Zeev: make the player a bit wider so it will be easir to catch
 
       if (
-        this.player.centerX  < p.x + p.width &&
-        this.player.centerX  > p.x &&
+        this.player.x < p.x + p.width &&
+        this.player.boxX > p.x &&
         this.player.y < p.y + p.height &&
         this.player.boxY > p.y
       ) {
@@ -63,7 +64,11 @@ class Game {
       return false;
     });
 
-    objects.forEach((res) => {
+    objects.forEach((res, i, arr) => {
+      console.log('arr.length=', arr.length);
+      if (res.name === 'second') {
+        //debugger
+      }
       const isAbove = this.player.boxY < res.y + res.height;
       const isBellow = this.player.boxY > res.y + res.height;
       const isOnLeft = this.player.boxX < res.x + res.width;
