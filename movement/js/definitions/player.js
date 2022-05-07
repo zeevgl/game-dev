@@ -3,6 +3,7 @@ const PlayerStates = {
   RUN: 'RUN',
   JUMP: 'JUMP',
   CROUCH: 'CROUCH',
+  SWORD: 'SWORD',
 };
 
 const SpriteStates = {
@@ -13,6 +14,10 @@ const SpriteStates = {
   [PlayerStates.RUN]: {
     start: 8,
     end: 14,
+  },
+  [PlayerStates.SWORD]: {
+    start: 43,
+    end: 45,
   },
 };
 

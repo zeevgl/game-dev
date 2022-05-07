@@ -83,14 +83,12 @@ class Player extends Actor {
     } else {
       this.spriteLeft.draw(this.imageFrame, this.x, this.y);
     }
-    
   }
 
   drawRect() {
     ctx.fillStyle = '#ff00ff';
     ctx.fillRect(150, 20, 50, 150);
   }
-
 
   moveLeft() {
     this.direction = PlayerDirection.LEFT;
@@ -121,5 +119,10 @@ class Player extends Actor {
       this.accV.vy = -this.size * 0.013 - this.additionalJumpingSpeed;
       this.additionalJumpingSpeed = 0;
     }
+  }
+
+  useSword() {
+    this.setState(PlayerStates.SWORD);
+    //TODO:Zeev: continue from here. make this annimation run only once
   }
 }

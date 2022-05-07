@@ -1,6 +1,5 @@
 class InputHandler {
   constructor(player, game) {
-    console.log('ZZ');
     document.addEventListener(
       'keydown',
       (event) => {
@@ -16,6 +15,10 @@ class InputHandler {
 
           case 'Space':
             player.wantToJump();
+            break;
+
+          case 'ControlLeft':
+            player.useSword();
             break;
 
           // case 27:
