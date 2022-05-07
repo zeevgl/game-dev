@@ -6,7 +6,7 @@ class Game {
     this.level5 = new Level(TileMaps.map5, '../assets/maps');
     this.player = new Player('hero', gameWidth, gameHeight);
     this.input = new InputHandler(this.player, this);
-    this.currentLevel = this.level5;
+    this.currentLevel = this.level4;
   }
 
   update(deltaTime, timestamp) {
@@ -65,10 +65,6 @@ class Game {
     });
 
     objects.forEach((res, i, arr) => {
-      console.log('arr.length=', arr.length);
-      if (res.name === 'second') {
-        //debugger
-      }
       const isAbove = this.player.boxY < res.y + res.height;
       const isBellow = this.player.boxY > res.y + res.height;
       const isOnLeft = this.player.boxX < res.x + res.width;

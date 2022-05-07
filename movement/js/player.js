@@ -11,6 +11,10 @@ class Player extends Actor {
 
     this.size = size;
 
+    this.preperingToJump = false;
+    this.additionalJumpingSpeed = 0;
+    this.maxAdditionalJumpingSpeed = 0.4;
+
     this.initSprite(size);
     this.initPlayer();
   }
@@ -51,6 +55,14 @@ class Player extends Actor {
       this.tick = 0;
     }
 
+    if (this.preperingToJump) {
+      this.additionalJumpingSpeed += 0.02;
+    }
+
+    if (this.additionalJumpingSpeed > this.maxAdditionalJumpingSpeed) {
+      this.additionalJumpingSpeed = this.maxAdditionalJumpingSpeed;
+    }
+
     this.calcPosition();
   }
 
@@ -83,9 +95,17 @@ class Player extends Actor {
     this.accV.vx = 0;
   }
 
+  wantToJump() {
+    if (this.accV.vy === 0) {
+      this.preperingToJump = true;
+    }
+  }
+
   jump() {
     if (this.accV.vy === 0) {
-      this.accV.vy = -this.size * 0.013; //-1.5;
+      this.preperingToJump = false;
+      this.accV.vy = -this.size * 0.013 - this.additionalJumpingSpeed;
+      this.additionalJumpingSpeed = 0;
     }
   }
 }
