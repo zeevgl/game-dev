@@ -3,13 +3,13 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "D:/projects/game-dev/assets/maps/map5.tmx",
+    "activeFile": "D:/projects/game-dev/assets/maps/shira6.tmx",
     "expandedProjectPaths": [
     ],
     "file.lastUsedOpenFilter": "All Files (*)",
     "fileStates": {
         "": {
-            "scaleInDock": 1
+            "scaleInDock": 0.75
         },
         "#Tileset": {
             "scaleInDock": 4
@@ -58,8 +58,8 @@
             "scale": 4,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 699.875,
-                "y": 314.875
+                "x": 699.75,
+                "y": 314.75
             }
         },
         "D:/projects/game-dev/assets/maps/map4.tmx#test1": {
@@ -100,6 +100,20 @@
         "D:/projects/game-dev/assets/maps/shira2.tmx#tiles_spritesheet": {
             "scaleInDock": 0.5,
             "scaleInEditor": 1
+        },
+        "D:/projects/game-dev/assets/maps/shira6.tmx": {
+            "scale": 0.75,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 2877.333333333333,
+                "y": 238.66666666666669
+            }
+        },
+        "D:/projects/game-dev/assets/maps/shira6.tmx#tiles_spritesheet": {
+            "scaleInDock": 1
+        },
+        "D:/projects/game-dev/assets/maps/shira6.tmx#tiles_spritesheet (1)": {
+            "scaleInDock": 1
         }
     },
     "last.exportedFilePath": "D:/projects/game-dev/assets/maps",
@@ -110,13 +124,13 @@
     "map.lastUsedFormat": "tmx",
     "map.tileHeight": 70,
     "map.tileWidth": 70,
-    "map.width": 300,
+    "map.width": 500,
     "openFiles": [
-        "D:/projects/game-dev/assets/maps/map4.tmx",
-        "D:/projects/game-dev/assets/maps/map5.tmx"
+        "D:/projects/game-dev/assets/maps/shira6.tmx"
     ],
     "project": "test.tiled-project",
     "recentFiles": [
+        "D:/projects/game-dev/assets/maps/shira6.tmx",
         "D:/projects/game-dev/assets/maps/map4.tmx",
         "D:/projects/game-dev/assets/maps/map5.tmx",
         "D:/projects/game-dev/assets/maps/shira1.tmx",
