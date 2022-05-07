@@ -21,6 +21,7 @@ class Player extends Actor {
 
   initPlayer() {
     //this.y = this.gameHeight - this.size;
+    this.direction = PlayerDirection.RIGHT;
     this.setState(PlayerStates.IDLE);
   }
 
@@ -33,8 +34,18 @@ class Player extends Actor {
       11,
       '../assets/Adventurer/adventurer-Sheet.png'
     );
-    this.sprite = sprite;
-    this.positions = positions;
+
+    const left = getSpritePositions(
+      50,
+      37,
+      this.size,
+      7,
+      11,
+      '../assets/Adventurer/adventurer-Sheet-left.png'
+    );
+
+    this.spriteRight = sprite;
+    this.spriteLeft = left.sprite;
   }
 
   setState(state) {
@@ -67,8 +78,12 @@ class Player extends Actor {
   }
 
   draw(canvas) {
-    //this.drawRect();
-    this.drawSprite();
+    if (this.direction === PlayerDirection.RIGHT) {
+      this.spriteRight.draw(this.imageFrame, this.x, this.y);
+    } else {
+      this.spriteLeft.draw(this.imageFrame, this.x, this.y);
+    }
+    
   }
 
   drawRect() {
@@ -76,16 +91,15 @@ class Player extends Actor {
     ctx.fillRect(150, 20, 50, 150);
   }
 
-  drawSprite() {
-    this.sprite.draw(this.imageFrame, this.x, this.y);
-  }
 
   moveLeft() {
+    this.direction = PlayerDirection.LEFT;
     this.setState(PlayerStates.RUN);
     this.accV.vx = -3;
   }
 
   moveRight() {
+    this.direction = PlayerDirection.RIGHT;
     this.setState(PlayerStates.RUN);
     this.accV.vx = 3;
   }

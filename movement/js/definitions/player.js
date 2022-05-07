@@ -15,3 +15,8 @@ const SpriteStates = {
     end: 14,
   },
 };
+
+const PlayerDirection = {
+  RIGHT : 1,
+  LEFT: 0,
+}
