@@ -16,7 +16,7 @@ class Game {
 
   draw(context) {
     //console.log('this.player.x=', this.player.x + PLAYER_SIZE);
-    ctx.save();
+    context.save();
     if (
       this.player.x + PLAYER_SIZE > this.gameWidth / 2 &&
       this.player.x + PLAYER_SIZE < 190000
@@ -34,7 +34,7 @@ class Game {
     this.currentLevel.draw(context);
     this.drawDebug(context);
     this.player.draw(context);
-    ctx.restore();
+    context.restore();
   }
 
   drawRect(context) {
