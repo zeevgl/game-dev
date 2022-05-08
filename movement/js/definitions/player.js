@@ -6,7 +6,7 @@ const PlayerStates = {
   SWORD: 'SWORD',
 };
 
-const SpriteStates = {
+const PlayerSprites = {
   [PlayerStates.IDLE]: {
     start: 0,
     end: 4,

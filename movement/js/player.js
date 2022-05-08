@@ -16,6 +16,7 @@ class Player extends Actor {
     this.maxAdditionalJumpingSpeed = 0.4;
 
     this.initSprite(size);
+    this.initAnimations();
     this.initPlayer();
   }
 
@@ -48,23 +49,38 @@ class Player extends Actor {
     this.spriteLeft = left.sprite;
   }
 
+  initAnimations() {
+    this.activeAnimation = null;
+
+    this.idleAnimationRight = new Animation(this.spriteRight, PlayerSprites[PlayerStates.IDLE].start, PlayerSprites[PlayerStates.IDLE].end, true);
+    this.runAnimationRight = new Animation(this.spriteRight, PlayerSprites[PlayerStates.RUN].start, PlayerSprites[PlayerStates.RUN].end, true);
+    this.swordAnimationRight = new Animation(this.spriteRight, PlayerSprites[PlayerStates.SWORD].start, PlayerSprites[PlayerStates.SWORD].end, false);
+
+    this.idleAnimationLeft = new Animation(this.spriteLeft, PlayerSprites[PlayerStates.IDLE].start, PlayerSprites[PlayerStates.IDLE].end, true);
+    this.runAnimationLeft = new Animation(this.spriteLeft, PlayerSprites[PlayerStates.RUN].start, PlayerSprites[PlayerStates.RUN].end, true);
+    this.swordAnimationLeft = new Animation(this.spriteLeft, PlayerSprites[PlayerStates.SWORD].start, PlayerSprites[PlayerStates.SWORD].end, false);
+  }
+
   setState(state) {
     if (this.state !== state) {
       this.state = state;
-      this.imageFrame = SpriteStates[this.state].start;
-      this.tick = 0;
+
+      switch (this.state) {
+        case PlayerStates.IDLE:
+          this.activeAnimation = this.direction === PlayerDirection.RIGHT ? this.idleAnimationRight : this.idleAnimationLeft;
+          break;
+        case PlayerStates.RUN:
+          this.activeAnimation = this.direction === PlayerDirection.RIGHT ? this.runAnimationRight : this.runAnimationLeft;
+          break;
+        case PlayerStates.SWORD:
+          this.activeAnimation = this.direction === PlayerDirection.RIGHT ? this.swordAnimationRight : this.swordAnimationLeft;
+          break;
+        }
     }
   }
 
   update(deltaTime, timestamp) {
-    this.tick++;
-    if (this.tick % 10 == 0) {
-      this.imageFrame++;
-      if (this.imageFrame >= SpriteStates[this.state].end) {
-        this.imageFrame = SpriteStates[this.state].start;
-      }
-      this.tick = 0;
-    }
+    this.activeAnimation.update(deltaTime, timestamp);
 
     if (this.preperingToJump) {
       this.additionalJumpingSpeed += 0.02;
@@ -78,11 +94,7 @@ class Player extends Actor {
   }
 
   draw(canvas) {
-    if (this.direction === PlayerDirection.RIGHT) {
-      this.spriteRight.draw(this.imageFrame, this.x, this.y);
-    } else {
-      this.spriteLeft.draw(this.imageFrame, this.x, this.y);
-    }
+    this.activeAnimation.draw(canvas, this.x, this.y);
   }
 
   drawRect() {
@@ -123,6 +135,6 @@ class Player extends Actor {
 
   useSword() {
     this.setState(PlayerStates.SWORD);
-    //TODO:Zeev: continue from here. make this annimation run only once
+    //TODO:Zeev: continue from here. make this animation run only once
   }
 }
