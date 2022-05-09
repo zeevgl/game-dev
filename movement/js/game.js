@@ -15,7 +15,6 @@ class Game {
   }
 
   draw(context) {
-    //console.log('this.player.x=', this.player.x + PLAYER_SIZE);
     context.save();
     if (
       this.player.x + PLAYER_SIZE > this.gameWidth / 2 &&
@@ -73,8 +72,10 @@ class Game {
       if (isAbove) {
         this.player.y = res.y - this.player.height;
         this.player.accV.vy = 0;
+        this.player.speedV.vy = 0;
       } else if (isBellow) {
         this.player.y = res.y + res.height;
+        this.player.speedV.vy = -this.player.speedV.vy;
         this.player.accV.vy = -this.player.accV.vy;
       } else if (isOnLeft) {
         this.player.x = res.x - this.player.width;
@@ -82,54 +83,5 @@ class Game {
         this.player.x = res.x + res.width;
       }
     });
-  }
-
-  calcColisionX() {
-    console.log('this.player boxX=', this.player.boxX);
-
-    //check if platform
-
-    const res = this.currentLevel.platfroms.objects.find((p, i) => {
-      if (
-        p.type === 'platform' &&
-        this.player.boxY > p.y &&
-        this.player.boxY <= p.y + p.height &&
-        this.player.centerX > p.x - this.player.size * 0.3 &&
-        this.player.centerX < p.x + p.width + this.player.size * 0.05
-      ) {
-        return true;
-      }
-
-      return false;
-    });
-
-    if (res) {
-      this.player.y = res.y - this.player.size;
-      this.player.accV.vy = 0;
-    }
-
-    //cehck if wall
-
-    const resWall = this.currentLevel.platfroms.objects.find((p, i) => {
-      if (
-        p.type === 'wall' &&
-        this.player.boxY > p.y &&
-        this.player.boxY <= p.y + p.height &&
-        this.player.boxX > p.x &&
-        this.player.centerX < p.x + p.width
-      ) {
-        console.log('wall');
-        // console.log('p.x=', p.x);
-        // console.log('player = ', this.player.x, this.player.boxX);
-        return true;
-      }
-
-      return false;
-    });
-
-    if (resWall) {
-      //this.player.stop();
-      this.player.x = resWall.x - this.player.size;
-    }
   }
 }

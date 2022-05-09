@@ -6,14 +6,14 @@ class Player extends Actor {
     this.gameWidth = gameWidth;
     this.gameHeight = gameHeight;
 
-    this.speedV = new Vector([2, 30]);
+    this.speedV = new Vector([0, 0]);
     this.accV = new Vector([0, 0]);
 
     this.size = size;
 
     this.preperingToJump = false;
     this.additionalJumpingSpeed = 0;
-    this.maxAdditionalJumpingSpeed = 0.4;
+    this.maxAdditionalJumpingSpeed = 1;
 
     this.initSprite(size);
     this.initAnimations();
@@ -83,7 +83,7 @@ class Player extends Actor {
     this.activeAnimation.update(deltaTime, timestamp);
 
     if (this.preperingToJump) {
-      this.additionalJumpingSpeed += 0.02;
+      this.additionalJumpingSpeed += 1;
     }
 
     if (this.additionalJumpingSpeed > this.maxAdditionalJumpingSpeed) {
@@ -105,18 +105,18 @@ class Player extends Actor {
   moveLeft() {
     this.direction = PlayerDirection.LEFT;
     this.setState(PlayerStates.RUN);
-    this.accV.vx = -3;
+    this.speedV.vx = -6;
   }
 
   moveRight() {
     this.direction = PlayerDirection.RIGHT;
     this.setState(PlayerStates.RUN);
-    this.accV.vx = 3;
+    this.speedV.vx = 6;
   }
 
   stop() {
     this.setState(PlayerStates.IDLE);
-    this.accV.vx = 0;
+    this.speedV.vx = 0;
   }
 
   wantToJump() {
@@ -128,7 +128,7 @@ class Player extends Actor {
   jump() {
     if (this.accV.vy === 0) {
       this.preperingToJump = false;
-      this.accV.vy = -this.size * 0.013 - this.additionalJumpingSpeed;
+      this.speedV.vy = -this.size * 0.2; //- this.additionalJumpingSpeed;
       this.additionalJumpingSpeed = 0;
     }
   }

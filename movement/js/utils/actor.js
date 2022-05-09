@@ -18,20 +18,24 @@ class Actor extends Shape {
     this.accV = new Vector([0, 0]);
     this.width = width;
     this.height = height;
+    this.isFalling = true;
   }
 
   calcPosition() {
     this.accV.vy += GRAVITY;
 
-    this.x += this.speedV.vx * this.accV.vx;
-    this.y += this.speedV.vy * this.accV.vy;
+    this.speedV.vx += this.accV.vx;
+    this.speedV.vy += this.accV.vy;
+
+    this.x += this.speedV.vx;
+    this.y += this.speedV.vy;
 
     if (this.x < 0) {
       this.x = 0;
       this.accV.vx = 0;
     }
 
-    //TODO:change to world boundary 
+    //TODO:change to world boundary
 
     // if (this.x + this.size > this.gameWidth) {
     //   debugger
