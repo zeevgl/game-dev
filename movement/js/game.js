@@ -5,13 +5,18 @@ class Game {
     this.level4 = new Level(TileMaps.map4, '../assets/maps');
     this.level5 = new Level(TileMaps.map5, '../assets/maps');
     this.player = new Player('hero', gameWidth, gameHeight);
+    this.enemy = new Enemy('hero', gameWidth, gameHeight);
     this.input = new InputHandler(this.player, this);
     this.currentLevel = this.level4;
+
+    this.actors = [this.player, this.enemy];
   }
 
   update(deltaTime, timestamp) {
-    this.player.update(deltaTime, timestamp);
-    this.calcColision();
+    this.actors.forEach((actor) => {
+      actor.update(deltaTime, timestamp);
+      this.checkColisionWithPlatform(actor);
+    });
   }
 
   draw(context) {
@@ -32,7 +37,9 @@ class Game {
 
     this.currentLevel.draw(context);
     this.drawDebug(context);
-    this.player.draw(context);
+    this.actors.forEach((actor) => {
+      actor.draw(context);
+    });
     context.restore();
   }
 
@@ -45,17 +52,13 @@ class Game {
 
   drawDebug(context) {}
 
-  calcColision() {
-    //check what player touches
+  checkColisionWithPlatform(actor) {
     const objects = this.currentLevel.platfroms.objects.filter((p, i) => {
-      //check colision. todo extruct maybe.....
-      //TODO:Zeev: make the player a bit wider so it will be easir to catch
-
       if (
-        this.player.x < p.x + p.width &&
-        this.player.boxX > p.x &&
-        this.player.y < p.y + p.height &&
-        this.player.boxY > p.y
+        actor.x < p.x + p.width &&
+        actor.boxX > p.x &&
+        actor.y < p.y + p.height &&
+        actor.boxY > p.y
       ) {
         return true;
       }
@@ -64,23 +67,23 @@ class Game {
     });
 
     objects.forEach((res, i, arr) => {
-      const isAbove = this.player.boxY < res.y + res.height;
-      const isBellow = this.player.boxY > res.y + res.height;
-      const isOnLeft = this.player.boxX < res.x + res.width;
-      const isOnRight = this.player.boxX > res.x + res.width;
+      const isAbove = actor.boxY < res.y + res.height;
+      const isBellow = actor.boxY > res.y + res.height;
+      const isOnLeft = actor.boxX < res.x + res.width;
+      const isOnRight = actor.boxX > res.x + res.width;
 
       if (isAbove) {
-        this.player.y = res.y - this.player.height;
-        this.player.accV.vy = 0;
-        this.player.speedV.vy = 0;
+        actor.y = res.y - actor.height;
+        actor.accV.vy = 0;
+        actor.speedV.vy = 0;
       } else if (isBellow) {
-        this.player.y = res.y + res.height;
-        this.player.speedV.vy = -this.player.speedV.vy;
-        this.player.accV.vy = -this.player.accV.vy;
+        actor.y = res.y + res.height;
+        actor.speedV.vy = -actor.speedV.vy;
+        actor.accV.vy = -actor.accV.vy;
       } else if (isOnLeft) {
-        this.player.x = res.x - this.player.width;
+        actor.x = res.x - actor.width;
       } else if (isOnRight) {
-        this.player.x = res.x + res.width;
+        actor.x = res.x + res.width;
       }
     });
   }
