@@ -52,30 +52,85 @@ class Player extends Actor {
   initAnimations() {
     this.activeAnimation = null;
 
-    this.idleAnimationRight = new Animation(this.spriteRight, PlayerSprites[PlayerStates.IDLE].start, PlayerSprites[PlayerStates.IDLE].end, true);
-    this.runAnimationRight = new Animation(this.spriteRight, PlayerSprites[PlayerStates.RUN].start, PlayerSprites[PlayerStates.RUN].end, true);
-    this.swordAnimationRight = new Animation(this.spriteRight, PlayerSprites[PlayerStates.SWORD].start, PlayerSprites[PlayerStates.SWORD].end, false);
+    //RIGHT
 
-    this.idleAnimationLeft = new Animation(this.spriteLeft, PlayerSprites[PlayerStates.IDLE].start, PlayerSprites[PlayerStates.IDLE].end, true);
-    this.runAnimationLeft = new Animation(this.spriteLeft, PlayerSprites[PlayerStates.RUN].start, PlayerSprites[PlayerStates.RUN].end, true);
-    this.swordAnimationLeft = new Animation(this.spriteLeft, PlayerSprites[PlayerStates.SWORD].start, PlayerSprites[PlayerStates.SWORD].end, false);
+    this.idleAnimationRight = new Animation(
+      this.spriteRight,
+      PlayerSprites[PlayerStates.IDLE].start,
+      PlayerSprites[PlayerStates.IDLE].end,
+      true
+    );
+
+    this.runAnimationRight = new Animation(
+      this.spriteRight,
+      PlayerSprites[PlayerStates.RUN].start,
+      PlayerSprites[PlayerStates.RUN].end,
+      true
+    );
+
+    this.swordAnimationRight = new Animation(
+      this.spriteRight,
+      PlayerSprites[PlayerStates.SWORD].start,
+      PlayerSprites[PlayerStates.SWORD].end,
+      false,
+      () => {
+        this.setState(PlayerStates.IDLE);
+      }
+    );
+
+    //LEFT
+
+    this.idleAnimationLeft = new Animation(
+      this.spriteLeft,
+      PlayerSprites[PlayerStates.IDLE].start,
+      PlayerSprites[PlayerStates.IDLE].end,
+      true
+    );
+
+    this.runAnimationLeft = new Animation(
+      this.spriteLeft,
+      PlayerSprites[PlayerStates.RUN].start,
+      PlayerSprites[PlayerStates.RUN].end,
+      true
+    );
+
+    this.swordAnimationLeft = new Animation(
+      this.spriteLeft,
+      PlayerSprites[PlayerStates.SWORD].start,
+      PlayerSprites[PlayerStates.SWORD].end,
+      false,
+      () => {
+        this.setState(PlayerStates.IDLE);
+      }
+    );
   }
 
   setState(state) {
     if (this.state !== state) {
       this.state = state;
-
+      console.log('this.state=', this.state);
       switch (this.state) {
         case PlayerStates.IDLE:
-          this.activeAnimation = this.direction === PlayerDirection.RIGHT ? this.idleAnimationRight : this.idleAnimationLeft;
+          this.activeAnimation =
+            this.direction === PlayerDirection.RIGHT
+              ? this.idleAnimationRight
+              : this.idleAnimationLeft;
           break;
         case PlayerStates.RUN:
-          this.activeAnimation = this.direction === PlayerDirection.RIGHT ? this.runAnimationRight : this.runAnimationLeft;
+          this.activeAnimation =
+            this.direction === PlayerDirection.RIGHT
+              ? this.runAnimationRight
+              : this.runAnimationLeft;
           break;
         case PlayerStates.SWORD:
-          this.activeAnimation = this.direction === PlayerDirection.RIGHT ? this.swordAnimationRight : this.swordAnimationLeft;
+          this.activeAnimation =
+            this.direction === PlayerDirection.RIGHT
+              ? this.swordAnimationRight
+              : this.swordAnimationLeft;
           break;
-        }
+      }
+
+      this.activeAnimation.start();
     }
   }
 
