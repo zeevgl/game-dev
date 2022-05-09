@@ -108,7 +108,7 @@ class Player extends Actor {
   setState(state) {
     if (this.state !== state) {
       this.state = state;
-      console.log('this.state=', this.state);
+
       switch (this.state) {
         case PlayerStates.IDLE:
           this.activeAnimation =
