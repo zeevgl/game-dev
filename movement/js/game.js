@@ -8,7 +8,7 @@ class Game {
     this.enemy = new Enemy('enemy', gameWidth, gameHeight, 100, 0);
     this.input = new InputHandler(this.player, this);
     this.currentLevel = this.level4;
-    this.loadNpcs();
+    this.initNpcs();
   }
 
   update(deltaTime, timestamp) {
@@ -19,6 +19,9 @@ class Game {
       if (this.isNPCInScreen(npc)) {
         npc.update(deltaTime, timestamp);
         this.checkColisionWithPlatform(npc);
+        if (this.checkColisionWithPlayer(npc)) {
+          console.log("BOOM");
+        }
         this.npcAI(npc);
       }
     });
@@ -26,6 +29,23 @@ class Game {
 
   draw(context) {
     context.save();
+    this.centerCameraOnPlayer(context);
+
+    this.currentLevel.draw(context);
+
+    this.player.draw();
+
+    this.npcs.forEach((npc) => {
+      if (this.isNPCInScreen(npc)) {
+        npc.draw(context);
+      }
+    });
+
+    this.drawDebug(context);
+    context.restore();
+  }
+
+  centerCameraOnPlayer(context) {
     if (
       this.player.x + PLAYER_SIZE > this.gameWidth / 2 &&
       this.player.x + PLAYER_SIZE < 190000
@@ -39,16 +59,6 @@ class Game {
         0
       );
     }
-
-    this.currentLevel.draw(context);
-    this.drawDebug(context);
-    this.player.draw();
-    this.npcs.forEach((npc) => {
-      if (this.isNPCInScreen(npc)) {
-        npc.draw(context);
-      }
-    });
-    context.restore();
   }
 
   drawRect(context) {
@@ -60,13 +70,13 @@ class Game {
 
   drawDebug(context) {}
 
-  checkColisionWithPlatform(actor) {
+  checkColisionWithPlatform(npc) {
     const objects = this.currentLevel.platfroms.objects.filter((p, i) => {
       if (
-        actor.x < p.x + p.width &&
-        actor.boxX > p.x &&
-        actor.y < p.y + p.height &&
-        actor.boxY > p.y
+        npc.x < p.x + p.width &&
+        npc.boxX > p.x &&
+        npc.y < p.y + p.height &&
+        npc.boxY > p.y
       ) {
         return true;
       }
@@ -75,28 +85,41 @@ class Game {
     });
 
     objects.forEach((res, i, arr) => {
-      const isAbove = actor.boxY < res.y + res.height;
-      const isBellow = actor.boxY > res.y + res.height;
-      const isOnLeft = actor.boxX < res.x + res.width;
-      const isOnRight = actor.boxX > res.x + res.width;
+      const isAbove = npc.boxY < res.y + res.height;
+      const isBellow = npc.boxY > res.y + res.height;
+      const isOnLeft = npc.boxX < res.x + res.width;
+      const isOnRight = npc.boxX > res.x + res.width;
 
       if (isAbove) {
-        actor.y = res.y - actor.height;
-        actor.accV.vy = 0;
-        actor.speedV.vy = 0;
+        npc.y = res.y - npc.height;
+        npc.accV.vy = 0;
+        npc.speedV.vy = 0;
       } else if (isBellow) {
-        actor.y = res.y + res.height;
-        actor.speedV.vy = -actor.speedV.vy;
-        actor.accV.vy = -actor.accV.vy;
+        npc.y = res.y + res.height;
+        npc.speedV.vy = -npc.speedV.vy;
+        npc.accV.vy = -npc.accV.vy;
       } else if (isOnLeft) {
-        actor.x = res.x - actor.width;
+        npc.x = res.x - npc.width;
       } else if (isOnRight) {
-        actor.x = res.x + res.width;
+        npc.x = res.x + res.width;
       }
     });
   }
 
-  loadNpcs() {
+  checkColisionWithPlayer(npc) {
+    if (
+      npc.x < this.player.x + this.player.width &&
+      npc.boxX > this.player.x &&
+      npc.y < this.player.y + this.player.height &&
+      npc.boxY > this.player.y
+    ) {
+      return true;
+    }
+
+    return false;
+  }
+
+  initNpcs() {
     const npcs = this.currentLevel.map.layers.find(
       (layer) => layer.name === 'npcs'
     );
