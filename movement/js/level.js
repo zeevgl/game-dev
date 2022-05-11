@@ -8,25 +8,21 @@ class Level {
     this.tilesPosition = [];
     this.tileSize = 70;
     this.initSprite();
-    this.initPlatform();
+    this.initLayers();
   }
 
   update(deltaTime, timestamp) {}
 
   draw(context) {
-    const ground = this.map.layers[0];
-
     for (let y = 0; y < this.map.height; y++) {
       for (let x = 0; x < this.map.width; x++) {
-        const tile = this.getTile(ground.data, x, y);
+        const tile = this.getTile(this.ground.data, x, y);
         if (tile !== 0) {
           this.sprite.draw(tile - 1, x * this.tileSize, y * this.tileSize);
         }
       }
     }
 
-    //draw platforms
-    
     DEBUG_MODE && this.drawPlatforms(context);
   }
 
@@ -56,7 +52,8 @@ class Level {
     this.positions = positions;
   }
 
-  initPlatform() {
-    this.platfroms = this.map.layers[1];
+  initLayers() {
+    this.platfroms = this.map.layers.find((layer) => layer.name === 'platform');
+    this.ground = this.map.layers.find((layer) => layer.name === 'ground');
   }
 }
