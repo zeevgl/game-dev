@@ -9,11 +9,14 @@ class Game {
     this.input = new InputHandler(this.player, this);
     this.currentLevel = this.level4;
 
-    this.actors = [this.player, this.enemy];
+    this.npcs = [this.enemy];
   }
 
   update(deltaTime, timestamp) {
-    this.actors.forEach((actor) => {
+    this.player.update(deltaTime, timestamp);
+    this.checkColisionWithPlatform(this.player);
+    
+    this.npcs.forEach((actor) => {
       actor.update(deltaTime, timestamp);
       this.checkColisionWithPlatform(actor);
     });
@@ -37,7 +40,8 @@ class Game {
 
     this.currentLevel.draw(context);
     this.drawDebug(context);
-    this.actors.forEach((actor) => {
+    this.player.draw();
+    this.npcs.forEach((actor) => {
       actor.draw(context);
     });
     context.restore();
