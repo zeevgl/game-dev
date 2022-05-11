@@ -2,8 +2,8 @@ class Game {
   constructor(gameWidth, gameHeight) {
     this.gameWidth = gameWidth;
     this.gameHeight = gameHeight;
+    this.state = GameStates.RUNNING;
     this.level4 = new Level(TileMaps.map4, '../assets/maps');
-    this.level5 = new Level(TileMaps.map5, '../assets/maps');
     this.player = new Player('hero', gameWidth, gameHeight);
     this.enemy = new Enemy('enemy', gameWidth, gameHeight, 100, 0);
     this.input = new InputHandler(this.player, this);
@@ -12,6 +12,10 @@ class Game {
   }
 
   update(deltaTime, timestamp) {
+    if (this.state !== GameStates.RUNNING) {
+      return;
+    }
+
     this.player.update(deltaTime, timestamp);
     this.checkColisionWithPlatform(this.player);
 
@@ -19,9 +23,11 @@ class Game {
       if (this.isNPCInScreen(npc)) {
         npc.update(deltaTime, timestamp);
         this.checkColisionWithPlatform(npc);
+
         if (this.checkColisionWithPlayer(npc)) {
-          console.log("BOOM");
+          this.state = GameStates.GAMEOVER;
         }
+
         this.npcAI(npc);
       }
     });
@@ -29,10 +35,15 @@ class Game {
 
   draw(context) {
     context.save();
+
+    if (this.state === GameStates.GAMEOVER) {
+      this.drawGameOver(context);
+      return;
+    }
+
     this.centerCameraOnPlayer(context);
 
     this.currentLevel.draw(context);
-
     this.player.draw();
 
     this.npcs.forEach((npc) => {
@@ -43,6 +54,24 @@ class Game {
 
     this.drawDebug(context);
     context.restore();
+  }
+
+  drawGameOver(context) {
+    context.fillStyle = '#ffffff';
+    context.globalAlpha = 0.9;
+    context.fillRect(0, 0, this.gameWidth, this.gameHeight);
+    context.globalAlpha = 1.0;
+
+    context.fillStyle = '#000000';
+    context.font = '48px serif';
+    const text = 'GAME OVER';
+    const textWidth = context.measureText(text).width;
+
+    context.fillText(
+      text,
+      this.gameWidth / 2 - textWidth / 2,
+      this.gameHeight / 2
+    );
   }
 
   centerCameraOnPlayer(context) {
