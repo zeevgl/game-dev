@@ -8,8 +8,8 @@ class Game {
     this.enemy = new Enemy('enemy', gameWidth, gameHeight, 100, 0);
     this.input = new InputHandler(this.player, this);
     this.currentLevel = this.level4;
-
-    this.npcs = [this.enemy];
+    this.loadNpcs();
+    //this.npcs = [this.enemy];
   }
 
   update(deltaTime, timestamp) {
@@ -89,6 +89,15 @@ class Game {
       } else if (isOnRight) {
         actor.x = res.x + res.width;
       }
+    });
+  }
+
+  loadNpcs() {
+    const npcs = this.currentLevel.map.layers.find(
+      (layer) => layer.name === 'npcs'
+    );
+    this.npcs = npcs.objects.map((obj) => {
+      return new Enemy(obj.name, this.gameWidth, this.gameHeight, obj.x, obj.y);
     });
   }
 }

@@ -3,13 +3,13 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "D:/projects/game-dev/assets/maps/shira6.tmx",
+    "activeFile": "D:/projects/game-dev/assets/maps/map4.tmx",
     "expandedProjectPaths": [
     ],
     "file.lastUsedOpenFilter": "All Files (*)",
     "fileStates": {
         "": {
-            "scaleInDock": 0.75
+            "scaleInDock": 1
         },
         "#Tileset": {
             "scaleInDock": 4
@@ -55,17 +55,35 @@
             "scaleInDock": 3
         },
         "D:/projects/game-dev/assets/maps/map4.tmx": {
-            "scale": 4,
-            "selectedLayer": 0,
+            "scale": 0.5,
+            "selectedLayer": 2,
             "viewCenter": {
-                "x": 699.75,
-                "y": 314.75
+                "x": 666,
+                "y": 316
             }
+        },
+        "D:/projects/game-dev/assets/maps/map4.tmx#BG3": {
+            "dynamicWrapping": false
+        },
+        "D:/projects/game-dev/assets/maps/map4.tmx#Decors": {
+            "dynamicWrapping": true
+        },
+        "D:/projects/game-dev/assets/maps/map4.tmx#aaaa": {
+            "dynamicWrapping": true
+        },
+        "D:/projects/game-dev/assets/maps/map4.tmx#background": {
+            "dynamicWrapping": true
+        },
+        "D:/projects/game-dev/assets/maps/map4.tmx#ssss": {
+            "dynamicWrapping": true
         },
         "D:/projects/game-dev/assets/maps/map4.tmx#test1": {
             "dynamicWrapping": false,
             "scaleInDock": 1,
             "scaleInEditor": 1
+        },
+        "D:/projects/game-dev/assets/maps/map4.tmx#zzzz": {
+            "dynamicWrapping": true
         },
         "D:/projects/game-dev/assets/maps/map5.tmx": {
             "scale": 0.5,
@@ -105,7 +123,7 @@
             "scale": 0.75,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 2877.333333333333,
+                "x": 2844,
                 "y": 238.66666666666669
             }
         },
@@ -117,7 +135,7 @@
         }
     },
     "last.exportedFilePath": "D:/projects/game-dev/assets/maps",
-    "last.imagePath": "D:/projects/game-dev/assets/maps",
+    "last.imagePath": "D:/projects/game-dev/assets/maps/FreeCuteTileset",
     "map.fixedSize": true,
     "map.height": 9,
     "map.lastUsedExportFilter": "JavaScript map files (*.js)",
@@ -126,12 +144,12 @@
     "map.tileWidth": 70,
     "map.width": 500,
     "openFiles": [
-        "D:/projects/game-dev/assets/maps/shira6.tmx"
+        "D:/projects/game-dev/assets/maps/map4.tmx"
     ],
     "project": "test.tiled-project",
     "recentFiles": [
-        "D:/projects/game-dev/assets/maps/shira6.tmx",
         "D:/projects/game-dev/assets/maps/map4.tmx",
+        "D:/projects/game-dev/assets/maps/shira6.tmx",
         "D:/projects/game-dev/assets/maps/map5.tmx",
         "D:/projects/game-dev/assets/maps/shira1.tmx",
         "D:/projects/game-dev/assets/maps/shira2.tmx",
@@ -144,5 +162,5 @@
         "height": 70,
         "width": 70
     },
-    "tileset.type": 0
+    "tileset.type": 1
 }

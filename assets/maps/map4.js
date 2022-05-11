@@ -91,17 +91,51 @@
                  "width":70,
                  "x":210,
                  "y":280
+                }],
+         "opacity":1,
+         "type":"objectgroup",
+         "visible":true,
+         "x":0,
+         "y":0
+        }, 
+        {
+         "draworder":"topdown",
+         "id":5,
+         "name":"npcs",
+         "objects":[
+                {
+                 "height":70,
+                 "id":20,
+                 "name":"enemy1",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":70,
+                 "x":350,
+                 "y":420
                 }, 
                 {
-                 "height":0,
-                 "id":19,
+                 "height":70,
+                 "id":21,
+                 "name":"enemy2",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":70,
+                 "x":630,
+                 "y":280
+                }, 
+                {
+                 "gid":25,
+                 "height":70,
+                 "id":23,
                  "name":"",
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":0,
-                 "x":840,
-                 "y":-280
+                 "width":70,
+                 "x":630,
+                 "y":350
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -109,8 +143,8 @@
          "x":0,
          "y":0
         }],
- "nextlayerid":3,
- "nextobjectid":20,
+ "nextlayerid":6,
+ "nextobjectid":24,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.8.4",
