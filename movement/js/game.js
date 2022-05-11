@@ -9,16 +9,18 @@ class Game {
     this.input = new InputHandler(this.player, this);
     this.currentLevel = this.level4;
     this.loadNpcs();
-    //this.npcs = [this.enemy];
   }
 
   update(deltaTime, timestamp) {
     this.player.update(deltaTime, timestamp);
     this.checkColisionWithPlatform(this.player);
 
-    this.npcs.forEach((actor) => {
-      actor.update(deltaTime, timestamp);
-      this.checkColisionWithPlatform(actor);
+    this.npcs.forEach((npc) => {
+      if (this.isNPCInScreen(npc)) {
+        npc.update(deltaTime, timestamp);
+        this.checkColisionWithPlatform(npc);
+        this.npcAI(npc);
+      }
     });
   }
 
@@ -41,8 +43,10 @@ class Game {
     this.currentLevel.draw(context);
     this.drawDebug(context);
     this.player.draw();
-    this.npcs.forEach((actor) => {
-      actor.draw(context);
+    this.npcs.forEach((npc) => {
+      if (this.isNPCInScreen(npc)) {
+        npc.draw(context);
+      }
     });
     context.restore();
   }
@@ -99,5 +103,13 @@ class Game {
     this.npcs = npcs.objects.map((obj) => {
       return new Enemy(obj.name, this.gameWidth, this.gameHeight, obj.x, obj.y);
     });
+  }
+
+  npcAI(npc) {
+    npc.speedV.vx = this.player.x > npc.x ? 1 : -1;
+  }
+
+  isNPCInScreen(npc) {
+    return Math.abs(this.player.boxX - npc.x) < this.gameWidth;
   }
 }

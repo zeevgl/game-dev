@@ -1,12 +1,12 @@
 class Enemy extends Actor {
-  constructor(name, gameWidth, gameHeight, x,y) {
+  constructor(name, gameWidth, gameHeight, x, y) {
     const size = 100;
 
     super(name, x, y, size, size, gameWidth, gameHeight);
     this.gameWidth = gameWidth;
     this.gameHeight = gameHeight;
 
-    this.speedV = new Vector([1, 0]);
+    this.speedV = new Vector([0, 0]);
     this.accV = new Vector([0, 0]);
 
     this.size = size;
@@ -21,7 +21,7 @@ class Enemy extends Actor {
   }
 
   draw(context) {
-    this.drawRect(context)
+    this.drawRect(context);
   }
 
   drawRect(context) {
