@@ -5,7 +5,7 @@ class Game {
     this.level4 = new Level(TileMaps.map4, '../assets/maps');
     this.level5 = new Level(TileMaps.map5, '../assets/maps');
     this.player = new Player('hero', gameWidth, gameHeight);
-    this.enemy = new Enemy('hero', gameWidth, gameHeight);
+    this.enemy = new Enemy('enemy', gameWidth, gameHeight, 100, 0);
     this.input = new InputHandler(this.player, this);
     this.currentLevel = this.level4;
 
@@ -15,7 +15,7 @@ class Game {
   update(deltaTime, timestamp) {
     this.player.update(deltaTime, timestamp);
     this.checkColisionWithPlatform(this.player);
-    
+
     this.npcs.forEach((actor) => {
       actor.update(deltaTime, timestamp);
       this.checkColisionWithPlatform(actor);
