@@ -25,12 +25,16 @@ class Game {
         this.checkColisionWithPlatform(npc);
 
         if (this.checkColisionWithPlayer(npc)) {
-          this.state = GameStates.GAMEOVER;
+          this.player.takeDamage(npc.attackDamage);
         }
 
         this.npcAI(npc);
       }
     });
+
+    if (this.player.heath <= 0) {
+      this.state = GameStates.GAMEOVER;
+    }
   }
 
   draw(context) {
@@ -54,6 +58,8 @@ class Game {
 
     this.drawDebug(context);
     context.restore();
+
+    this.drawHUD(context);
   }
 
   drawGameOver(context) {
@@ -72,6 +78,16 @@ class Game {
       this.gameWidth / 2 - textWidth / 2,
       this.gameHeight / 2
     );
+  }
+
+  drawHUD(context) {
+    context.fillStyle = '#000000';
+    context.font = '24px serif';
+    const text = `Health ${this.player.heath}%`;
+    const textWidth = context.measureText(text).width;
+    context.textAlign = 'start';
+    context.textBaseline = 'top';
+    context.fillText(text, this.gameWidth - textWidth - 10, 10);
   }
 
   centerCameraOnPlayer(context) {

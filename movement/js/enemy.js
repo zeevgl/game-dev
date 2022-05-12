@@ -2,7 +2,7 @@ class Enemy extends Actor {
   constructor(name, gameWidth, gameHeight, x, y) {
     const size = 100;
 
-    super(name, x, y, size, size, gameWidth, gameHeight);
+    super(name, x, y, size, size, gameWidth, gameHeight, 1, 5);
     this.gameWidth = gameWidth;
     this.gameHeight = gameHeight;
 
@@ -20,12 +20,12 @@ class Enemy extends Actor {
     this.calcPosition();
   }
 
-  draw(context) {
-    this.drawRect(context);
-  }
+  // draw(context) {
+  //   this.drawRect(context);
+  // }
 
-  drawRect(context) {
-    context.fillStyle = '#ff00ff';
-    context.fillRect(this.x, this.y, this.width, this.height);
-  }
+  // drawRect(context) {
+  //   context.fillStyle = '#ff00ff';
+  //   context.fillRect(this.x, this.y, this.width, this.height);
+  // }
 }

@@ -10,7 +10,17 @@ class Shape {
 }
 
 class Actor extends Shape {
-  constructor(name, x, y, width, height, gameWidth, gameHeight) {
+  constructor(
+    name,
+    x,
+    y,
+    width,
+    height,
+    gameWidth,
+    gameHeight,
+    heath,
+    attackDamage
+  ) {
     super(name, x, y);
     this.gameHeight = gameHeight;
     this.gameWidth = gameWidth;
@@ -18,7 +28,19 @@ class Actor extends Shape {
     this.accV = new Vector([0, 0]);
     this.width = width;
     this.height = height;
-    this.isFalling = true;
+
+    this.heath = heath;
+    this.attackDamage = attackDamage;
+    this.isTookDamage = false;
+    this.isFlickering = false;
+  }
+
+  update(deltaTime, timestamp) {
+    this.calcPosition();
+  }
+
+  draw(ctx) {
+    ctx.strokeRect(this.x, this.y, this.width, this.height);
   }
 
   calcPosition() {
@@ -34,18 +56,6 @@ class Actor extends Shape {
       this.x = 0;
       this.accV.vx = 0;
     }
-
-    //TODO:change to world boundary
-
-    // if (this.x + this.size > this.gameWidth) {
-    //   debugger
-    //   this.x = this.gameWidth - this.size;
-    // }
-
-    // if (this.y > this.gameHeight - this.size) {
-    //   this.y = this.gameHeight - this.size;
-    //   this.accV.vy = 0;
-    // }
   }
 
   get boxX() {
@@ -60,11 +70,14 @@ class Actor extends Shape {
     return this.y + this.height;
   }
 
-  update(deltaTime, timestamp) {
-    this.calcPosition();
+  takeDamage(damage) {
+    if (!this.isFlickering) {
+      this.isTookDamage = true;
+      this.heath -= damage;
+    }
   }
 
-  draw(ctx) {
-    ctx.strokeRect(this.x, this.y, this.width, this.height);
+  atack() {
+    //
   }
 }

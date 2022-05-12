@@ -2,7 +2,7 @@ class Player extends Actor {
   constructor(name, gameWidth, gameHeight) {
     const size = PLAYER_SIZE;
 
-    super(name, 0, 0, size, size, gameWidth, gameHeight);
+    super(name, 0, 0, size, size, gameWidth, gameHeight, 100);
     this.gameWidth = gameWidth;
     this.gameHeight = gameHeight;
 
@@ -14,6 +14,8 @@ class Player extends Actor {
     this.preperingToJump = false;
     this.additionalJumpingSpeed = 0;
     this.maxAdditionalJumpingSpeed = 1;
+
+    this.tick = 1;
 
     this.initSprite(size);
     this.initAnimations();
@@ -144,10 +146,26 @@ class Player extends Actor {
       this.additionalJumpingSpeed = this.maxAdditionalJumpingSpeed;
     }
 
+    if (this.isTookDamage) {
+      this.tick = 1;
+      this.isFlickering = true;
+      this.isTookDamage = false;
+    } else if (this.isFlickering) {
+      this.tick++;
+    }
+
     this.calcPosition();
   }
 
   draw(canvas) {
+    if (this.isFlickering) {
+      if (this.tick % 100 === 0) {
+        this.isFlickering = false;
+      } else if (this.tick % 2 === 0) {
+        return;
+      }
+    }
+
     this.activeAnimation.draw(canvas, this.x, this.y);
   }
 
