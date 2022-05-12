@@ -20,12 +20,16 @@ class Game {
     this.checkColisionWithPlatform(this.player);
 
     this.npcs.forEach((npc) => {
-      if (this.isNPCInScreen(npc)) {
+      if (npc.isAlive && this.isNPCInScreen(npc)) {
         npc.update(deltaTime, timestamp);
         this.checkColisionWithPlatform(npc);
 
         if (this.checkColisionWithPlayer(npc)) {
-          this.player.takeDamage(npc.attackDamage);
+          if (this.player.state === PlayerStates.SWORD) {
+            npc.takeDamage(this.player.attackDamage);
+          } else {
+            this.player.takeDamage(npc.attackDamage);
+          }
         }
 
         this.npcAI(npc);
@@ -35,6 +39,8 @@ class Game {
     if (this.player.heath <= 0) {
       this.state = GameStates.GAMEOVER;
     }
+
+    //this.removeDeadNpcs();  //not sure if its needed. waist of run time and mem
   }
 
   draw(context) {
@@ -179,5 +185,9 @@ class Game {
 
   isNPCInScreen(npc) {
     return Math.abs(this.player.boxX - npc.x) < this.gameWidth;
+  }
+
+  removeDeadNpcs() {
+    this.npcs = this.npcs.filter((npc) => npc.isAlive);
   }
 }

@@ -22,6 +22,7 @@ class Actor extends Shape {
     attackDamage
   ) {
     super(name, x, y);
+    this.isAlive = true;
     this.gameHeight = gameHeight;
     this.gameWidth = gameWidth;
     this.speedV = new Vector([0, 0]);
@@ -34,11 +35,15 @@ class Actor extends Shape {
   }
 
   update(deltaTime, timestamp) {
-    this.calcPosition();
+    if (this.isAlive) {
+      this.calcPosition();
+    }
   }
 
   draw(ctx) {
-    ctx.strokeRect(this.x, this.y, this.width, this.height);
+    if (this.isAlive) {
+      ctx.strokeRect(this.x, this.y, this.width, this.height);
+    }
   }
 
   calcPosition() {
@@ -69,13 +74,9 @@ class Actor extends Shape {
   }
 
   takeDamage(damage) {
-    // if (!this.isFlickering) {
-    //   this.isTookDamage = true;
-    //   this.heath -= damage;
-    // }
-  }
-
-  atack() {
-    //
+    this.heath -= damage;
+    if (this.heath <= 0) {
+      this.isAlive = false;
+    }
   }
 }
