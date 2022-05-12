@@ -3,7 +3,7 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "D:/projects/game-dev/assets/maps/map4.tmx",
+    "activeFile": "D:/projects/game-dev/assets/maps/map6.tmx",
     "expandedProjectPaths": [
     ],
     "file.lastUsedOpenFilter": "All Files (*)",
@@ -55,11 +55,11 @@
             "scaleInDock": 3
         },
         "D:/projects/game-dev/assets/maps/map4.tmx": {
-            "scale": 0.5,
-            "selectedLayer": 2,
+            "scale": 1,
+            "selectedLayer": 1,
             "viewCenter": {
-                "x": 832,
-                "y": 316
+                "x": 381,
+                "y": 473
             }
         },
         "D:/projects/game-dev/assets/maps/map4.tmx#BG3": {
@@ -95,6 +95,17 @@
         },
         "D:/projects/game-dev/assets/maps/map5.tmx#tiles_spritesheet": {
             "scaleInDock": 1
+        },
+        "D:/projects/game-dev/assets/maps/map6.tmx": {
+            "scale": 0.75,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 2009.3333333333333,
+                "y": 221.33333333333337
+            }
+        },
+        "D:/projects/game-dev/assets/maps/map6.tmx#tiles1": {
+            "scaleInDock": 0.75
         },
         "D:/projects/game-dev/assets/maps/shira1.tmx": {
             "scale": 0.75,
@@ -135,7 +146,7 @@
         }
     },
     "last.exportedFilePath": "D:/projects/game-dev/assets/maps",
-    "last.imagePath": "D:/projects/game-dev/assets/maps/FreeCuteTileset",
+    "last.imagePath": "D:/projects/game-dev/assets/maps",
     "map.fixedSize": true,
     "map.height": 9,
     "map.lastUsedExportFilter": "JavaScript map files (*.js)",
@@ -144,11 +155,13 @@
     "map.tileWidth": 70,
     "map.width": 500,
     "openFiles": [
-        "D:/projects/game-dev/assets/maps/map4.tmx"
+        "D:/projects/game-dev/assets/maps/map4.tmx",
+        "D:/projects/game-dev/assets/maps/map6.tmx"
     ],
     "project": "test.tiled-project",
     "recentFiles": [
         "D:/projects/game-dev/assets/maps/map4.tmx",
+        "D:/projects/game-dev/assets/maps/map6.tmx",
         "D:/projects/game-dev/assets/maps/shira6.tmx",
         "D:/projects/game-dev/assets/maps/map5.tmx",
         "D:/projects/game-dev/assets/maps/shira1.tmx",
@@ -162,5 +175,5 @@
         "height": 70,
         "width": 70
     },
-    "tileset.type": 1
+    "tileset.type": 0
 }

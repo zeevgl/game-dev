@@ -4,10 +4,11 @@ class Game {
     this.gameHeight = gameHeight;
     this.state = GameStates.RUNNING;
     this.level4 = new Level(TileMaps.map4, '../assets/maps');
+    this.level6 = new Level(TileMaps.map6, '../assets/maps');
     this.player = new Player('hero', gameWidth, gameHeight);
     this.enemy = new Enemy('enemy', gameWidth, gameHeight, 100, 0);
     this.input = new InputHandler(this.player, this);
-    this.currentLevel = this.level4;
+    this.currentLevel = this.level6;
     this.initNpcs();
   }
 
