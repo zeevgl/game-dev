@@ -15,7 +15,8 @@ class Player extends Actor {
     this.additionalJumpingSpeed = 0;
     this.maxAdditionalJumpingSpeed = 1;
 
-    this.tick = 1;
+    this.tick = null;
+    this.isFlickering = false;
 
     this.initSprite(size);
     this.initAnimations();
@@ -146,11 +147,7 @@ class Player extends Actor {
       this.additionalJumpingSpeed = this.maxAdditionalJumpingSpeed;
     }
 
-    if (this.isTookDamage) {
-      this.tick = 1;
-      this.isFlickering = true;
-      this.isTookDamage = false;
-    } else if (this.isFlickering) {
+    if (this.isFlickering) {
       this.tick++;
     }
 
@@ -207,6 +204,13 @@ class Player extends Actor {
 
   useSword() {
     this.setState(PlayerStates.SWORD);
-    //TODO:Zeev: continue from here. make this animation run only once
+  }
+
+  takeDamage(damage) {
+    if (!this.isFlickering) {
+      this.tick = 1;
+      this.heath -= damage;
+      this.isFlickering = true;
+    }
   }
 }

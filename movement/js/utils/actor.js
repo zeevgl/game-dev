@@ -31,8 +31,6 @@ class Actor extends Shape {
 
     this.heath = heath;
     this.attackDamage = attackDamage;
-    this.isTookDamage = false;
-    this.isFlickering = false;
   }
 
   update(deltaTime, timestamp) {
@@ -71,10 +69,10 @@ class Actor extends Shape {
   }
 
   takeDamage(damage) {
-    if (!this.isFlickering) {
-      this.isTookDamage = true;
-      this.heath -= damage;
-    }
+    // if (!this.isFlickering) {
+    //   this.isTookDamage = true;
+    //   this.heath -= damage;
+    // }
   }
 
   atack() {
