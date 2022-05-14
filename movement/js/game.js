@@ -55,7 +55,7 @@ class Game {
     this.centerCameraOnPlayer(context);
 
     this.currentLevel.draw(context);
-    this.player.draw();
+    this.player.draw(context);
 
     this.npcs.forEach((npc) => {
       if (npc.isAlive && this.isNPCInScreen(npc)) {
@@ -159,12 +159,11 @@ class Game {
   }
 
   checkColisionWithPlayer(npc) {
-    console.log('this.player.boxX=', this.player.x, this.player.boxX);
     if (
-      npc.x < this.player.boxX &&
-      npc.boxX > this.player.x &&
-      npc.y < this.player.boxY &&
-      npc.boxY > this.player.y
+      npc.collisionX1 < this.player.collisionX2 &&
+      npc.collisionX2 > this.player.collisionX1 &&
+      npc.collisionY1 < this.player.collisionY2 &&
+      npc.collisionY2 > this.player.collisionY1
     ) {
       return true;
     }

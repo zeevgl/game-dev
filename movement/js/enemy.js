@@ -15,7 +15,9 @@ class Enemy extends Actor {
     this.additionalJumpingSpeed = 0;
     this.maxAdditionalJumpingSpeed = 1;
 
-    this.color = `rgb(${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)})`;
+    this.color = `rgb(${Math.floor(Math.random() * 255)}, ${Math.floor(
+      Math.random() * 255
+    )}, ${Math.floor(Math.random() * 255)})`;
   }
 
   update(deltaTime, timestamp) {
@@ -24,10 +26,10 @@ class Enemy extends Actor {
 
   draw(context) {
     this.drawRect(context);
+    DEBUG_MODE && this.drawCollisionBox(context);
   }
 
   drawRect(context) {
-    
     context.fillStyle = this.color;
     context.fillRect(this.x, this.y, this.width, this.height);
   }

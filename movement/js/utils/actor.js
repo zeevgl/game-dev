@@ -19,7 +19,9 @@ class Actor extends Shape {
     gameWidth,
     gameHeight,
     heath,
-    attackDamage
+    attackDamage,
+    collisionWidth,
+    collisionHeight
   ) {
     super(name, x, y);
     this.isAlive = true;
@@ -29,6 +31,9 @@ class Actor extends Shape {
     this.accV = new Vector([0, 0]);
     this.width = width;
     this.height = height;
+
+    this.collisionWidth = collisionWidth ? collisionWidth : 0;
+    this.collisionHeight = collisionHeight ? collisionHeight : 0;
 
     this.heath = heath;
     this.attackDamage = attackDamage;
@@ -44,6 +49,11 @@ class Actor extends Shape {
     if (this.isAlive) {
       ctx.strokeRect(this.x, this.y, this.width, this.height);
     }
+  }
+
+  drawCollisionBox(context) {
+    context.fillStyle = 'rgba(255,0,0,0.5)';
+    context.fillRect(this.collisionX1, this.collisionY1, this.collisionX2 - this.collisionX1, this.collisionY2 - this.collisionY1);
   }
 
   calcPosition() {
@@ -78,5 +88,21 @@ class Actor extends Shape {
     if (this.heath <= 0) {
       this.isAlive = false;
     }
+  }
+
+  get collisionX1() {
+    return this.x + this.collisionWidth;
+  }
+
+  get collisionX2() {
+    return this.x + this.width - this.collisionWidth;
+  }
+
+  get collisionY1() {
+    return this.y + this.collisionHeight;
+  }
+
+  get collisionY2() {
+    return this.y + this.height - this.collisionHeight;
   }
 }
