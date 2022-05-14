@@ -159,6 +159,7 @@ class Game {
   }
 
   checkColisionWithPlayer(npc) {
+    console.log('this.player.boxX=', this.player.x, this.player.boxX);
     if (
       npc.x < this.player.boxX &&
       npc.boxX > this.player.x &&

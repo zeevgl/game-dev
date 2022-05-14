@@ -10,6 +10,8 @@ class Player extends Actor {
     this.accV = new Vector([0, 0]);
 
     this.size = size;
+    this.collisionWidth = 40;
+    this.collisionHeight = this.size;
 
     this.preperingToJump = false;
     this.additionalJumpingSpeed = 0;
@@ -164,12 +166,14 @@ class Player extends Actor {
     }
 
     this.activeAnimation.draw(canvas, this.x, this.y);
+
+    //DEBUG_MODE && this.drawCollisionBox(canvas);
   }
 
-  drawRect() {
-    ctx.fillStyle = '#ff00ff';
-    ctx.fillRect(150, 20, 50, 150);
-  }
+  // drawCollisionBox() {
+  //   ctx.fillStyle = 'rgba(255,0,0,0.5)';
+  //   ctx.fillRect(this.x + this.collisionWidth, this.y, this.boxX - this.x - this.collisionWidth, this.boxY);
+  // }
 
   moveLeft() {
     this.direction = PlayerDirection.LEFT;
@@ -213,4 +217,13 @@ class Player extends Actor {
       this.isFlickering = true;
     }
   }
+
+  // get boxX1() {
+  //   //TODO: a better way to calc right side collision.
+  //   //need to refactor to use X1, X2, Y1, Y2
+  //   //X1 = this.x + this.collisionWidth
+  //   //X2 = this.x + this.width  - this.collisionWidth
+  //   //....
+  //   return this.x + this.width  - this.collisionWidth;
+  // }
 }
