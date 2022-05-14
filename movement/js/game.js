@@ -58,7 +58,7 @@ class Game {
     this.player.draw();
 
     this.npcs.forEach((npc) => {
-      if (this.isNPCInScreen(npc)) {
+      if (npc.isAlive && this.isNPCInScreen(npc)) {
         npc.draw(context);
       }
     });
