@@ -55,5 +55,8 @@ class Level {
   initLayers() {
     this.platfroms = this.map.layers.find((layer) => layer.name === 'platform');
     this.ground = this.map.layers.find((layer) => layer.name === 'ground');
+    this.interactable = this.map.layers.find(
+      (layer) => layer.name === 'interactable'
+    );
   }
 }

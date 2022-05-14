@@ -19,13 +19,14 @@ class Game {
 
     this.player.update(deltaTime, timestamp);
     this.checkColisionWithPlatform(this.player);
+    this.checkColisionInteractable(this.player);
 
     this.npcs.forEach((npc) => {
       if (npc.isAlive && this.isNPCInScreen(npc)) {
         npc.update(deltaTime, timestamp);
         this.checkColisionWithPlatform(npc);
 
-        if (this.checkColisionWithPlayer(npc)) {
+        if (Collision.checkColisionOf2Actors(npc, this.player)) {
           if (this.player.state === PlayerStates.SWORD) {
             npc.takeDamage(this.player.attackDamage);
           } else {
@@ -50,7 +51,12 @@ class Game {
     if (this.state === GameStates.GAMEOVER) {
       this.drawGameOver(context);
       return;
+    } else if (this.state === GameStates.WIN) {
+      this.drawWin(context);
+      return;
     }
+
+    this.drawBackground(context);
 
     this.centerCameraOnPlayer(context);
 
@@ -87,14 +93,37 @@ class Game {
     );
   }
 
+  drawWin(context) {
+    context.fillStyle = '#ffffff';
+    context.globalAlpha = 0.9;
+    context.fillRect(0, 0, this.gameWidth, this.gameHeight);
+    context.globalAlpha = 1.0;
+
+    context.fillStyle = '#ff0000';
+    context.font = '48px serif';
+    const text = 'LEVEL COMPLETE';
+    const textWidth = context.measureText(text).width;
+
+    context.fillText(
+      text,
+      this.gameWidth / 2 - textWidth / 2,
+      this.gameHeight / 2
+    );
+  }
+
   drawHUD(context) {
-    context.fillStyle = '#000000';
-    context.font = '24px serif';
+    context.fillStyle = '#ffffff';
+    context.font = '24px arial';
     const text = `Health ${this.player.heath}%`;
     const textWidth = context.measureText(text).width;
     context.textAlign = 'start';
     context.textBaseline = 'top';
     context.fillText(text, this.gameWidth - textWidth - 10, 10);
+  }
+
+  drawBackground(context) {
+    context.fillStyle = '#000000';
+    context.fillRect(0, 0, this.gameWidth, this.gameHeight);
   }
 
   centerCameraOnPlayer(context) {
@@ -122,53 +151,45 @@ class Game {
 
   drawDebug(context) {}
 
-  checkColisionWithPlatform(npc) {
-    const objects = this.currentLevel.platfroms.objects.filter((p, i) => {
-      if (
-        npc.x < p.x + p.width &&
-        npc.boxX > p.x &&
-        npc.y < p.y + p.height &&
-        npc.boxY > p.y
-      ) {
-        return true;
-      }
+  checkColisionWithPlatform(actor) {
+    const objects = Collision.getObjectsCollidingWithActor(
+      actor,
+      this.currentLevel.platfroms
+    );
 
-      return false;
-    });
-
-    objects.forEach((res, i, arr) => {
-      const isAbove = npc.boxY < res.y + res.height;
-      const isBellow = npc.boxY > res.y + res.height;
-      const isOnLeft = npc.boxX < res.x + res.width;
-      const isOnRight = npc.boxX > res.x + res.width;
+    objects.forEach((res) => {
+      const isAbove = actor.boxY < res.y + res.height;
+      const isBellow = actor.boxY > res.y + res.height;
+      const isOnLeft = actor.boxX < res.x + res.width;
+      const isOnRight = actor.boxX > res.x + res.width;
 
       if (isAbove) {
-        npc.y = res.y - npc.height;
-        npc.accV.vy = 0;
-        npc.speedV.vy = 0;
+        actor.y = res.y - actor.height;
+        actor.accV.vy = 0;
+        actor.speedV.vy = 0;
       } else if (isBellow) {
-        npc.y = res.y + res.height;
-        npc.speedV.vy = -npc.speedV.vy;
-        npc.accV.vy = -npc.accV.vy;
+        actor.y = res.y + res.height;
+        actor.speedV.vy = -actor.speedV.vy;
+        actor.accV.vy = -actor.accV.vy;
       } else if (isOnLeft) {
-        npc.x = res.x - npc.width;
+        actor.x = res.x - actor.width;
       } else if (isOnRight) {
-        npc.x = res.x + res.width;
+        actor.x = res.x + res.width;
       }
     });
   }
 
-  checkColisionWithPlayer(npc) {
-    if (
-      npc.collisionX1 < this.player.collisionX2 &&
-      npc.collisionX2 > this.player.collisionX1 &&
-      npc.collisionY1 < this.player.collisionY2 &&
-      npc.collisionY2 > this.player.collisionY1
-    ) {
-      return true;
-    }
+  checkColisionInteractable(npc) {
+    const objects = Collision.getObjectsCollidingWithActor(
+      npc,
+      this.currentLevel.interactable
+    );
 
-    return false;
+    objects.forEach((res) => {
+      if (res.name === 'endOfLevel') {
+        this.state = GameStates.WIN;
+      }
+    });
   }
 
   initNpcs() {

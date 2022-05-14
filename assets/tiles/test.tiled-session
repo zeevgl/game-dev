@@ -58,8 +58,8 @@
             "scale": 1,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 381,
-                "y": 473
+                "x": 700,
+                "y": 314.5
             }
         },
         "D:/projects/game-dev/assets/maps/map4.tmx#BG3": {
@@ -98,10 +98,10 @@
         },
         "D:/projects/game-dev/assets/maps/map6.tmx": {
             "scale": 0.75,
-            "selectedLayer": 2,
+            "selectedLayer": 1,
             "viewCenter": {
-                "x": 2009.3333333333333,
-                "y": 221.33333333333337
+                "x": 4244,
+                "y": 420
             }
         },
         "D:/projects/game-dev/assets/maps/map6.tmx#tiles1": {
@@ -160,8 +160,8 @@
     ],
     "project": "test.tiled-project",
     "recentFiles": [
-        "D:/projects/game-dev/assets/maps/map4.tmx",
         "D:/projects/game-dev/assets/maps/map6.tmx",
+        "D:/projects/game-dev/assets/maps/map4.tmx",
         "D:/projects/game-dev/assets/maps/shira6.tmx",
         "D:/projects/game-dev/assets/maps/map5.tmx",
         "D:/projects/game-dev/assets/maps/shira1.tmx",
