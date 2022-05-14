@@ -37,7 +37,7 @@ class Game {
       }
     });
 
-    if (this.player.heath <= 0) {
+    if (this.player.heath <= 0 || this.player.y > this.gameHeight) {
       this.state = GameStates.GAMEOVER;
     }
 
@@ -160,9 +160,9 @@ class Game {
 
   checkColisionWithPlayer(npc) {
     if (
-      npc.x < this.player.x + this.player.width &&
+      npc.x < this.player.boxX &&
       npc.boxX > this.player.x &&
-      npc.y < this.player.y + this.player.height &&
+      npc.y < this.player.boxY &&
       npc.boxY > this.player.y
     ) {
       return true;

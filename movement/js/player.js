@@ -32,7 +32,7 @@ class Player extends Actor {
     const { positions, sprite } = getSpritePositions(
       50,
       37,
-      this.size,
+      size,
       7,
       11,
       '../assets/Adventurer/adventurer-Sheet.png'
@@ -41,7 +41,7 @@ class Player extends Actor {
     const left = getSpritePositions(
       50,
       37,
-      this.size,
+      size,
       7,
       11,
       '../assets/Adventurer/adventurer-Sheet-left.png'
