@@ -2,7 +2,7 @@ class Player extends Actor {
   constructor(name, gameWidth, gameHeight) {
     const size = PLAYER_SIZE;
 
-    super(name, 0, 0, size, size, gameWidth, gameHeight, 100, 10, 60, 10);
+    super(name, 0, 0, size, size, gameWidth, gameHeight, 100, 10);
     this.gameWidth = gameWidth;
     this.gameHeight = gameHeight;
 
@@ -22,6 +22,7 @@ class Player extends Actor {
     this.initSprite(size);
     this.initAnimations();
     this.initPlayer();
+    this.initCollisionBoxes();
   }
 
   initPlayer() {
@@ -108,6 +109,28 @@ class Player extends Actor {
     );
   }
 
+  initCollisionBoxes() {
+    this.damageBox = new CollisionBox(
+      this.x,
+      this.y,
+      this.size,
+      this.size,
+      60,
+      10,
+      'rgba(0,255,0,0.5)'
+    );
+
+    this.attackBox = new CollisionBox(
+      this.x,
+      this.y,
+      this.size,
+      this.size,
+      10,
+      0,
+      'rgba(255,0,0,0.5)'
+    );
+  }
+
   setState(state) {
     if (this.state !== state) {
       this.state = state;
@@ -147,6 +170,8 @@ class Player extends Actor {
     this.updateFlickering(deltaTime);
 
     this.calcPosition();
+    this.damageBox.update(this.x, this.y, deltaTime, timestamp);
+    this.attackBox.update(this.x, this.y, deltaTime, timestamp);
   }
 
   updateFlickering(deltaTime) {
@@ -167,7 +192,10 @@ class Player extends Actor {
 
     this.activeAnimation.draw(canvas, this.x, this.y);
 
-    DEBUG_MODE && this.drawCollisionBox(canvas);
+    if (DEBUG_MODE) {
+      this.damageBox.draw(canvas);
+      this.attackBox.draw(canvas);
+    }
   }
 
   moveLeft() {

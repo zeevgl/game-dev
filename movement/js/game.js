@@ -26,12 +26,13 @@ class Game {
         npc.update(deltaTime, timestamp);
         this.checkColisionWithPlatform(npc);
 
-        if (Collision.checkColisionOf2Actors(npc, this.player)) {
-          if (this.player.state === PlayerStates.SWORD) {
-            npc.takeDamage(this.player.attackDamage);
-          } else {
-            this.player.takeDamage(npc.attackDamage);
-          }
+        if (npc.attackBox.checkCollision(this.player.damageBox)) {
+          this.player.takeDamage(npc.attackDamage);
+        } else if (
+          this.player.state === PlayerStates.SWORD &&
+          this.player.attackBox.checkCollision(npc.damageBox)
+        ) {
+          npc.takeDamage(this.player.attackDamage);
         }
 
         this.npcAI(npc);
