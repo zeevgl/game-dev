@@ -14,7 +14,7 @@ class InputHandler {
             break;
 
           case 'Space':
-            player.wantToJump();
+            player.jump();
             break;
 
           case 'ControlLeft':
@@ -40,9 +40,6 @@ class InputHandler {
           case 'ArrowRight':
           case 'ArrowLeft':
             player.stop();
-            break;
-          case 'Space':
-            player.jump();
             break;
         }
       },

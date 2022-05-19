@@ -2,7 +2,7 @@ class Player extends Actor {
   constructor(name, gameWidth, gameHeight) {
     const size = PLAYER_SIZE;
 
-    super(name, 0, 0, size, size, gameWidth, gameHeight, 100, 10, 40, 10);
+    super(name, 0, 0, size, size, gameWidth, gameHeight, 100, 10, 60, 10);
     this.gameWidth = gameWidth;
     this.gameHeight = gameHeight;
 
@@ -10,10 +10,6 @@ class Player extends Actor {
     this.accV = new Vector([0, 0]);
 
     this.size = size;
-
-    this.preperingToJump = false;
-    this.additionalJumpingSpeed = 0;
-    this.maxAdditionalJumpingSpeed = 1;
 
     this.flickering = {
       active: false,
@@ -148,10 +144,6 @@ class Player extends Actor {
       this.additionalJumpingSpeed += 1;
     }
 
-    if (this.additionalJumpingSpeed > this.maxAdditionalJumpingSpeed) {
-      this.additionalJumpingSpeed = this.maxAdditionalJumpingSpeed;
-    }
-
     this.updateFlickering(deltaTime);
 
     this.calcPosition();
@@ -195,17 +187,9 @@ class Player extends Actor {
     this.speedV.vx = 0;
   }
 
-  wantToJump() {
-    if (this.accV.vy === 0) {
-      this.preperingToJump = true;
-    }
-  }
-
   jump() {
     if (this.accV.vy === 0) {
-      this.preperingToJump = false;
-      this.speedV.vy = -this.size * 0.2; //- this.additionalJumpingSpeed;
-      this.additionalJumpingSpeed = 0;
+      this.speedV.vy = -this.size * 0.2;
     }
   }
 
