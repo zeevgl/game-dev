@@ -6,18 +6,21 @@ class Animation {
     this.loop = loop;
     this.onComplete = onComplete;
 
-    this.tick = null;
     this.imageFrame = null;
     this.isRunning = false;
+    this.totalDt = 0;
+
+    this.frameDuration = 160; //ms
   }
 
-  update(deltaTime, timestamp) {
+  update(dt, timestamp) {
     if (!this.isRunning) {
       return;
     }
 
-    this.tick++;
-    if (this.tick % 10 == 0) {
+    this.totalDt += dt;
+
+    if (this.totalDt >= this.frameDuration) {
       this.imageFrame++;
       if (this.imageFrame === this.endIndex) {
         if (this.loop) {
@@ -27,7 +30,7 @@ class Animation {
           this.onComplete?.();
         }
       }
-      this.tick = 0;
+      this.totalDt = 0;
     }
   }
 
@@ -37,7 +40,7 @@ class Animation {
 
   start() {
     this.imageFrame = this.startIndex;
-    this.tick = 0;
+    this.totalDt = 0;
     this.isRunning = true;
   }
 

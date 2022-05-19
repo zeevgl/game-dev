@@ -15,9 +15,14 @@ class Player extends Actor {
     this.additionalJumpingSpeed = 0;
     this.maxAdditionalJumpingSpeed = 1;
 
-    this.tick = null;
-    this.isFlickering = false;
+    this.flickering = {
+      active: false,
+      maxDuration: 2000,
+      totalDt: 0,
+      count: 0,
+    };
 
+    this.resetFlickring();
     this.initSprite(size);
     this.initAnimations();
     this.initPlayer();
@@ -147,20 +152,25 @@ class Player extends Actor {
       this.additionalJumpingSpeed = this.maxAdditionalJumpingSpeed;
     }
 
-    if (this.isFlickering) {
-      this.tick++;
-    }
+    this.updateFlickering(deltaTime);
 
     this.calcPosition();
   }
 
-  draw(canvas) {
-    if (this.isFlickering) {
-      if (this.tick % 100 === 0) {
-        this.isFlickering = false;
-      } else if (this.tick % 2 === 0) {
-        return;
+  updateFlickering(deltaTime) {
+    if (this.flickering.active) {
+      this.flickering.totalDt += deltaTime;
+      if (this.flickering.totalDt >= this.flickering.maxDuration) {
+        this.resetFlickring();
+      } else {
+        this.flickering.count++;
       }
+    }
+  }
+
+  draw(canvas) {
+    if (this.flickering.active && this.flickering.count % 5 === 0) {
+      return;
     }
 
     this.activeAnimation.draw(canvas, this.x, this.y);
@@ -204,10 +214,15 @@ class Player extends Actor {
   }
 
   takeDamage(damage) {
-    if (!this.isFlickering) {
-      this.tick = 1;
+    if (!this.flickering.active) {
       this.heath -= damage;
-      this.isFlickering = true;
+      this.flickering.active = true;
     }
+  }
+
+  resetFlickring() {
+    this.flickering.active = false;
+    this.flickering.totalDt = 0;
+    this.flickering.count = 0;
   }
 }
