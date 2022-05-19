@@ -110,6 +110,16 @@ class Player extends Actor {
   }
 
   initCollisionBoxes() {
+    this.bodyBox = new CollisionBox(
+      this.x,
+      this.y,
+      this.size,
+      this.size,
+      30,
+      0,
+      'rgba(0,0,255,0.5)'
+    );
+
     this.damageBox = new CollisionBox(
       this.x,
       this.y,
@@ -129,6 +139,8 @@ class Player extends Actor {
       0,
       'rgba(255,0,0,0.5)'
     );
+
+    this.collisonBoxes = [this.damageBox, this.attackBox, this.bodyBox];
   }
 
   setState(state) {
@@ -170,8 +182,9 @@ class Player extends Actor {
     this.updateFlickering(deltaTime);
 
     this.calcPosition();
-    this.damageBox.update(this.x, this.y, deltaTime, timestamp);
-    this.attackBox.update(this.x, this.y, deltaTime, timestamp);
+    this.collisonBoxes.forEach((box) => {
+      box.update(this.x, this.y, deltaTime, timestamp);
+    });
   }
 
   updateFlickering(deltaTime) {
@@ -193,8 +206,9 @@ class Player extends Actor {
     this.activeAnimation.draw(canvas, this.x, this.y);
 
     if (DEBUG_MODE) {
-      this.damageBox.draw(canvas);
-      this.attackBox.draw(canvas);
+      this.collisonBoxes.forEach((box) => {
+        box.draw(canvas);
+      });
     }
   }
 

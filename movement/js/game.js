@@ -24,6 +24,7 @@ class Game {
     this.npcs.forEach((npc) => {
       if (npc.isAlive && this.isNPCInScreen(npc)) {
         npc.update(deltaTime, timestamp);
+
         this.checkColisionWithPlatform(npc);
 
         if (npc.attackBox.checkCollision(this.player.damageBox)) {
@@ -158,6 +159,15 @@ class Game {
       this.currentLevel.platfroms
     );
 
+    /*
+      //should use bodyBox. but NPC dont work...
+    const objects = Collision.getObjectsCollidingWithActor2(
+      actor.bodyBox,
+      this.currentLevel.platfroms
+    );
+
+    */
+
     objects.forEach((res) => {
       const isAbove = actor.boxY < res.y + res.height;
       const isBellow = actor.boxY > res.y + res.height;
@@ -180,9 +190,9 @@ class Game {
     });
   }
 
-  checkColisionInteractable(npc) {
-    const objects = Collision.getObjectsCollidingWithActor(
-      npc,
+  checkColisionInteractable(actor) {
+    const objects = Collision.getObjectsCollidingWithBox(
+      actor.bodyBox,
       this.currentLevel.interactable
     );
 

@@ -19,6 +19,16 @@ class Enemy extends Actor {
   }
 
   initCollisionBoxes() {
+    this.bodyBox = new CollisionBox(
+      this.x,
+      this.y,
+      this.width,
+      this.heath,
+      0,
+      0,
+      'rgba(0,0,255,0.5)'
+    );
+
     this.damageBox = new CollisionBox(
       this.x,
       this.y,
@@ -26,7 +36,7 @@ class Enemy extends Actor {
       this.heath,
       0,
       0,
-      'rgba(0,255,0,0.5)'
+      'rgba(0,255,0,0.0)'
     );
 
     this.attackBox = new CollisionBox(
@@ -36,21 +46,25 @@ class Enemy extends Actor {
       this.height,
       0,
       0,
-      'rgba(255,0,0,0.5)'
+      'rgba(255,0,0,0.0)'
     );
+
+    this.collisonBoxes = [this.damageBox, this.attackBox, this.bodyBox];
   }
 
   update(deltaTime, timestamp) {
     this.calcPosition();
-    this.damageBox.update(this.x, this.y);
-    this.attackBox.update(this.x, this.y);
+    this.collisonBoxes.forEach((box) => {
+      box.update(this.x, this.y, deltaTime, timestamp);
+    });
   }
 
   draw(context) {
     this.drawRect(context);
     if (DEBUG_MODE) {
-      this.damageBox.draw(context);
-      this.attackBox.draw(context);
+      this.collisonBoxes.forEach((box) => {
+        box.draw(context);
+      });
     }
   }
 
