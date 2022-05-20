@@ -6,7 +6,6 @@ class Game {
     this.level4 = new Level(TileMaps.map4, '../assets/maps');
     this.level6 = new Level(TileMaps.map6, '../assets/maps');
     this.player = new Player('hero', gameWidth, gameHeight);
-    this.enemy = new Enemy('enemy', gameWidth, gameHeight, 100, 0);
     this.input = new InputHandler(this.player, this);
     this.currentLevel = this.level6;
     this.initNpcs();
@@ -160,13 +159,9 @@ class Game {
     );
 
     objects.forEach((res) => {
-      if (res.name === 'zz') {
-        //
-      }
-
       const collisionSide = collideMap(actor.bodyBox, res);
-      console.log('collisionSide=', collisionSide);
 
+      //TODO:Zeev: use CONST instaed of stings
       if (collisionSide === 'top') {
         actor.y = res.y - actor.height;
         actor.accV.vy = 0;
@@ -176,9 +171,9 @@ class Game {
         actor.speedV.vy = -actor.speedV.vy;
         actor.accV.vy = -actor.accV.vy;
       } else if (collisionSide === 'left') {
-        actor.x = res.x - actor.width;
+        actor.x = res.x - actor.width + actor.bodyBox.collisionWidth; //res.x - actor.width + 30;
       } else if (collisionSide === 'right') {
-        actor.x = res.x + res.width;
+        actor.x = res.x + res.width - actor.bodyBox.collisionWidth;
       }
     });
   }
@@ -203,7 +198,7 @@ class Game {
     this.npcs = npcs.objects.map((obj) => {
       return new Enemy(obj.name, this.gameWidth, this.gameHeight, obj.x, obj.y);
     });
-
+    
   }
 
   npcAI(npc) {
