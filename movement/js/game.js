@@ -160,22 +160,24 @@ class Game {
     );
 
     objects.forEach((res) => {
-      const isAbove = actor.boxY < res.y + res.height;
-      const isBellow = actor.boxY > res.y + res.height;
-      const isOnLeft = actor.boxX < res.x + res.width;
-      const isOnRight = actor.boxX > res.x + res.width;
+      if (res.name === 'zz') {
+        //
+      }
 
-      if (isAbove) {
+      const collisionSide = collideMap(actor.bodyBox, res);
+      console.log('collisionSide=', collisionSide);
+
+      if (collisionSide === 'top') {
         actor.y = res.y - actor.height;
         actor.accV.vy = 0;
         actor.speedV.vy = 0;
-      } else if (isBellow) {
+      } else if (collisionSide === 'bottom') {
         actor.y = res.y + res.height;
         actor.speedV.vy = -actor.speedV.vy;
         actor.accV.vy = -actor.accV.vy;
-      } else if (isOnLeft) {
+      } else if (collisionSide === 'left') {
         actor.x = res.x - actor.width;
-      } else if (isOnRight) {
+      } else if (collisionSide === 'right') {
         actor.x = res.x + res.width;
       }
     });
@@ -201,6 +203,7 @@ class Game {
     this.npcs = npcs.objects.map((obj) => {
       return new Enemy(obj.name, this.gameWidth, this.gameHeight, obj.x, obj.y);
     });
+
   }
 
   npcAI(npc) {
