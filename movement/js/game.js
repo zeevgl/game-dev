@@ -154,19 +154,10 @@ class Game {
   drawDebug(context) {}
 
   checkColisionWithPlatform(actor) {
-    const objects = Collision.getObjectsCollidingWithActor(
-      actor,
-      this.currentLevel.platfroms
-    );
-
-    /*
-      //should use bodyBox. but NPC dont work...
-    const objects = Collision.getObjectsCollidingWithActor2(
+    const objects = Collision.getObjectsCollidingWithBox(
       actor.bodyBox,
       this.currentLevel.platfroms
     );
-
-    */
 
     objects.forEach((res) => {
       const isAbove = actor.boxY < res.y + res.height;

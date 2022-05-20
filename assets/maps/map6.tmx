@@ -23,26 +23,22 @@
   <object id="23" name="endOfLevel" type="door" x="4690" y="420" width="70" height="70"/>
  </objectgroup>
  <objectgroup id="3" name="npcs">
-  <object id="14" x="560" y="350" width="70" height="70"/>
+  <object id="14" x="560" y="0" width="70" height="70"/>
   <object id="16" x="1540" y="140" width="70" height="70"/>
   <object id="18" x="2240" y="70" width="70" height="70"/>
   <object id="20" x="4480" y="350" width="70" height="70"/>
   <object id="21" x="4270" y="420" width="70" height="70"/>
  </objectgroup>
  <objectgroup id="2" name="platform">
-  <object id="1" x="0" y="420" width="980" height="70"/>
-  <object id="2" x="1190" y="420" width="280" height="70"/>
-  <object id="3" x="1470" y="210" width="420" height="70"/>
-  <object id="4" x="1470" y="280" width="70" height="210"/>
-  <object id="5" x="1890" y="210" width="420" height="70"/>
-  <object id="6" x="2310" y="210" width="140" height="70"/>
-  <object id="7" x="2380" y="210" width="70" height="280"/>
-  <object id="8" x="2450" y="420" width="210" height="70"/>
-  <object id="9" x="2660" y="350" width="70" height="140"/>
-  <object id="10" x="2660" y="280" width="350" height="70"/>
-  <object id="11" x="3290" y="280" width="700" height="70"/>
-  <object id="12" x="3920" y="350" width="70" height="210"/>
-  <object id="13" x="3990" y="490" width="840" height="70"/>
-  <object id="22" x="4830" y="0" width="70" height="630"/>
+  <object id="1" x="0" y="420" width="980" height="210"/>
+  <object id="2" x="1190" y="420" width="280" height="210"/>
+  <object id="3" x="1470" y="210" width="420" height="420"/>
+  <object id="5" x="1890" y="210" width="490" height="70"/>
+  <object id="7" x="2380" y="210" width="70" height="350"/>
+  <object id="8" x="2450" y="420" width="210" height="140"/>
+  <object id="10" x="2660" y="280" width="350" height="280"/>
+  <object id="11" x="3290" y="280" width="700" height="280"/>
+  <object id="13" x="3990" y="490" width="840" height="140"/>
+  <object id="22" x="4830" y="0" width="140" height="630"/>
  </objectgroup>
 </map>

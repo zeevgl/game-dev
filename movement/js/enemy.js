@@ -23,7 +23,7 @@ class Enemy extends Actor {
       this.x,
       this.y,
       this.width,
-      this.heath,
+      this.height,
       0,
       0,
       'rgba(0,0,255,0.5)'
@@ -33,7 +33,7 @@ class Enemy extends Actor {
       this.x,
       this.y,
       this.width,
-      this.heath,
+      this.height,
       0,
       0,
       'rgba(0,255,0,0.0)'

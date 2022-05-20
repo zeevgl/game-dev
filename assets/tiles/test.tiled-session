@@ -98,10 +98,10 @@
         },
         "D:/projects/game-dev/assets/maps/map6.tmx": {
             "scale": 0.75,
-            "selectedLayer": 1,
+            "selectedLayer": 3,
             "viewCenter": {
-                "x": 4724,
-                "y": 456
+                "x": 1642.6666666666665,
+                "y": 413.33333333333337
             }
         },
         "D:/projects/game-dev/assets/maps/map6.tmx#tiles1": {
@@ -160,8 +160,8 @@
     ],
     "project": "test.tiled-project",
     "recentFiles": [
-        "D:/projects/game-dev/assets/maps/map4.tmx",
         "D:/projects/game-dev/assets/maps/map6.tmx",
+        "D:/projects/game-dev/assets/maps/map4.tmx",
         "D:/projects/game-dev/assets/maps/shira6.tmx",
         "D:/projects/game-dev/assets/maps/map5.tmx",
         "D:/projects/game-dev/assets/maps/shira1.tmx",
