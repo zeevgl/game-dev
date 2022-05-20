@@ -198,7 +198,6 @@ class Game {
     this.npcs = npcs.objects.map((obj) => {
       return new Enemy(obj.name, this.gameWidth, this.gameHeight, obj.x, obj.y);
     });
-    
   }
 
   npcAI(npc) {

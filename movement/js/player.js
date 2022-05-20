@@ -115,7 +115,7 @@ class Player extends Actor {
       this.y,
       this.size,
       this.size,
-      30,
+      20,
       0,
       'rgba(0,0,255,0.5)'
     );
@@ -174,10 +174,6 @@ class Player extends Actor {
 
   update(deltaTime, timestamp) {
     this.activeAnimation.update(deltaTime, timestamp);
-
-    if (this.preperingToJump) {
-      this.additionalJumpingSpeed += 1;
-    }
 
     this.updateFlickering(deltaTime);
 
