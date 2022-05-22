@@ -159,20 +159,20 @@ class Game {
     );
 
     objects.forEach((res) => {
-      const collisionSide = collideMap(actor.bodyBox, res);
+      const collisionSide = Collision.getCollisionSide(actor.bodyBox, res);
 
       //TODO:Zeev: use CONST instaed of stings
-      if (collisionSide === 'top') {
+      if (collisionSide === Collision.Sides.TOP) {
         actor.y = res.y - actor.height;
         actor.accV.vy = 0;
         actor.speedV.vy = 0;
-      } else if (collisionSide === 'bottom') {
+      } else if (collisionSide === Collision.Sides.BOTTOM) {
         actor.y = res.y + res.height;
         actor.speedV.vy = -actor.speedV.vy;
         actor.accV.vy = -actor.accV.vy;
-      } else if (collisionSide === 'left') {
+      } else if (collisionSide === Collision.Sides.LEFT) {
         actor.x = res.x - actor.width + actor.bodyBox.collisionWidth; //res.x - actor.width + 30;
-      } else if (collisionSide === 'right') {
+      } else if (collisionSide === Collision.Sides.RIGHT) {
         actor.x = res.x + res.width - actor.bodyBox.collisionWidth;
       }
     });

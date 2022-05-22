@@ -9,26 +9,30 @@ const Collision = {
       );
     });
   },
+  getCollisionSide: (collisionBox, object) => {
+    const r1 = {
+      x: collisionBox.x1,
+      y: collisionBox.y1,
+      w: collisionBox.x2 - collisionBox.x1,
+      h: collisionBox.y2 - collisionBox.y1,
+    };
+
+    const r2 = {
+      x: object.x,
+      y: object.y,
+      w: object.width,
+      h: object.height,
+    };
+
+    return collide(r1, r2);
+  },
+  Sides: {
+    TOP: 'top',
+    BOTTOM: 'bottom',
+    LEFT: 'left',
+    RIGHT: 'right',
+  },
 };
-
-//TODO:Zeev: refactor this code to match this project
-function collideMap(collisionBox, object) {
-  const r1 = {
-    x: collisionBox.x1,
-    y: collisionBox.y1,
-    w: collisionBox.x2 - collisionBox.x1,
-    h: collisionBox.y2 - collisionBox.y1,
-  };
-
-  const r2 = {
-    x: object.x,
-    y: object.y,
-    w: object.width,
-    h: object.height,
-  };
-
-  return collide(r1, r2);
-}
 
 function collide(r1, r2) {
   var dx = r1.x + r1.w / 2 - (r2.x + r2.w / 2);
@@ -38,12 +42,16 @@ function collide(r1, r2) {
   var crossWidth = width * dy;
   var crossHeight = height * dx;
   var collision = 'none';
-  //
+
   if (Math.abs(dx) <= width && Math.abs(dy) <= height) {
     if (crossWidth > crossHeight) {
-      collision = crossWidth > -crossHeight ? 'bottom' : 'left';
+      collision =
+        crossWidth > -crossHeight
+          ? Collision.Sides.BOTTOM
+          : Collision.Sides.LEFT;
     } else {
-      collision = crossWidth > -crossHeight ? 'right' : 'top';
+      collision =
+        crossWidth > -crossHeight ? Collision.Sides.RIGHT : Collision.Sides.TOP;
     }
   }
   return collision;
